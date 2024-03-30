@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy to Azure
 
 on:
@@ -8,30 +5,25 @@ on:
     branches:
       - master
   workflow_dispatch:
-
 jobs:
   build:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup Node.js version
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-
       - name: npm install, build, test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-      
       - name: Upload artifacts for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: '/build'
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,20 +33,17 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
-
     steps:
       - name: Download artifacts from build job
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      
       - name: Login to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_39AB2CC7FB1A4C14B1B9EF47C7EBE90C }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CADADA31AB544BD5B40DA5F3ADC927FD }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F502A05228C54D509A1E40B277602C3A }}
-
       - name: 'Deploy to Azure'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
