@@ -1,5 +1,7 @@
 import "./MainContent.css"
 
+import Logo from "Assets/logo.png"
+
 interface Props {
 
 }
@@ -12,7 +14,7 @@ const MainContent: React.FC<Props> = (): JSX.Element => {
     // - name and profile button in top left
     return (
         <div>
-            <img src="/src/assets/Simplistant-Logo.png" height="128" alt=""></img>
+            <img src={Logo} height="128" alt=""></img>
             <p>Hello</p>
         </div>
     );

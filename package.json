@@ -11,12 +11,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^20.12.7",
     "@vitejs/plugin-react": "^1.0.0",
     "caniuse-lite": "^1.0.30001600",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.2.2",
-    "vite": "^2.6.1"
+    "vite": "^2.6.1",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

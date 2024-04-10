@@ -1,7 +1,7 @@
 import "./App.css"
 
-import MainContent from "../Modules/MainContent/MainContent"
-import LoginPanel from "../Modules/LoginPanel/LoginPanel"
+import MainContent from "Modules/MainContent/MainContent"
+import LoginPanel from "Modules/LoginPanel/LoginPanel"
 
 function App() {
 
