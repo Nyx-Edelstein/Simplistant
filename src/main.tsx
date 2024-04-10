@@ -1,9 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App.tsx'
-import './index.css'
+import React from "react"
+import ReactDOM from "react-dom"
+import App from "./App.tsx"
 
-const root = document.getElementById('root');
+const root = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
     <App />
