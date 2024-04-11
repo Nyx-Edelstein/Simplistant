@@ -20,5 +20,6 @@
   <ItemGroup>
     <Folder Include="Modules\MainContent\" />
     <Folder Include="Modules\LoginPanel\" />
+    <Folder Include="Modules\ErrorPanel\" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,6 @@ export default defineConfig({
     resolve: {
         alias: {
             Assets: resolve(__dirname, "./src/Assets"),
-            Models: resolve(__dirname, "./Models"),
             Modules: resolve(__dirname, "./Modules"),
         },
     },

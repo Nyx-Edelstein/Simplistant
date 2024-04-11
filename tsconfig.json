@@ -8,7 +8,6 @@
     "baseUrl": "./",
     "paths": {
       "Assets/*": [ "./src/Assets/*" ],
-      "Models/*": [ "./Models/*" ],
       "Modules/*": [ "./Modules/*" ]
     },
 

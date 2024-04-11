@@ -7,7 +7,7 @@ interface Props {
 const LoginPanel: React.FC<Props> = (): JSX.Element => {
     return (
         <div>
-            LoginPanel
+            You need to log in first.
         </div>
     );
 }
