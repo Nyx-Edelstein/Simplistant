@@ -4,12 +4,12 @@ import * as DTO from "./dto";
 
 const api_uri = "https://simplistant-api.azurewebsites.net";
 
-export const BeginRecoverAccount = async (BeginRecoverAccountRequest) => {
+export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountRequest) => {
     const endpoint = `${api_uri}/AccountController/BeginRecoverAccount`;
-    return await axios.post<DTO.MessageResponse>(endpoint)
+    return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -17,12 +17,12 @@ export const BeginRecoverAccount = async (BeginRecoverAccountRequest) => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ChangeEmail = async (ChangeEmailRequest) => {
+export const ChangeEmail = async (request: DTO.ChangeEmailRequest) => {
     const endpoint = `${api_uri}/AccountController/ChangeEmail`;
-    return await axios.post<DTO.MessageResponse>(endpoint)
+    return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -30,12 +30,12 @@ export const ChangeEmail = async (ChangeEmailRequest) => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ChangePassword = async (ChangePasswordRequest) => {
+export const ChangePassword = async (request: DTO.ChangePasswordRequest) => {
     const endpoint = `${api_uri}/AccountController/ChangePassword`;
-    return await axios.post<DTO.MessageResponse>(endpoint)
+    return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -48,7 +48,7 @@ export const ClearData = async () => {
     return await axios.get<boolean>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -56,12 +56,12 @@ export const ClearData = async () => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ConfirmEmail = async (ConfirmEmailRequest) => {
+export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest) => {
     const endpoint = `${api_uri}/AccountController/ConfirmEmail`;
-    return await axios.post<DTO.MessageResponse>(endpoint)
+    return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -69,12 +69,12 @@ export const ConfirmEmail = async (ConfirmEmailRequest) => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const FinishRecoverAccount = async (FinishRecoverAccountRequest) => {
+export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequest) => {
     const endpoint = `${api_uri}/AccountController/FinishRecoverAccount`;
-    return await axios.post<DTO.MessageResponse>(endpoint)
+    return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -87,7 +87,7 @@ export const LoggedIn = async () => {
     return await axios.get<boolean>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -95,12 +95,12 @@ export const LoggedIn = async () => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const Login = async (LoginRequest) => {
+export const Login = async (request: DTO.LoginRequest) => {
     const endpoint = `${api_uri}/AccountController/Login`;
-    return await axios.post<DTO.MessageResponse>(endpoint)
+    return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -113,7 +113,7 @@ export const LoginOAuth = async () => {
     return await axios.get<string>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -126,7 +126,7 @@ export const Logout = async () => {
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -139,7 +139,7 @@ export const LogoutAllDevices = async () => {
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -147,12 +147,12 @@ export const LogoutAllDevices = async () => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const OAuth = async (String) => {
-    const endpoint = `${api_uri}/AccountController/OAuth`;
+export const OAuth = async (code: string) => {
+    const endpoint = `${api_uri}/AccountController/OAuth?code=${code}`;
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -160,12 +160,12 @@ export const OAuth = async (String) => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const Register = async (RegisterRequest) => {
+export const Register = async (request: DTO.RegisterRequest) => {
     const endpoint = `${api_uri}/AccountController/Register`;
-    return await axios.post<DTO.MessageResponse>(endpoint)
+    return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
@@ -178,7 +178,7 @@ export const ResendConfirmationEmail = async () => {
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status == 401) {
+            if (axiosError.response!.status === 401) {
                 return 0;
             } else {
                 return axiosError.message;
