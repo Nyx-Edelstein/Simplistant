@@ -5,7 +5,7 @@ import * as DTO from "./dto";
 const api_uri = "https://simplistant-api.azurewebsites.net";
 
 export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountRequest) => {
-    const endpoint = `${api_uri}/AccountController/BeginRecoverAccount`;
+    const endpoint = `${api_uri}/Account/BeginRecoverAccount`;
     return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -18,7 +18,7 @@ export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountReques
 }
 
 export const ChangeEmail = async (request: DTO.ChangeEmailRequest) => {
-    const endpoint = `${api_uri}/AccountController/ChangeEmail`;
+    const endpoint = `${api_uri}/Account/ChangeEmail`;
     return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -31,7 +31,7 @@ export const ChangeEmail = async (request: DTO.ChangeEmailRequest) => {
 }
 
 export const ChangePassword = async (request: DTO.ChangePasswordRequest) => {
-    const endpoint = `${api_uri}/AccountController/ChangePassword`;
+    const endpoint = `${api_uri}/Account/ChangePassword`;
     return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -44,7 +44,7 @@ export const ChangePassword = async (request: DTO.ChangePasswordRequest) => {
 }
 
 export const ClearData = async () => {
-    const endpoint = `${api_uri}/AccountController/ClearData`;
+    const endpoint = `${api_uri}/Account/ClearData`;
     return await axios.get<boolean>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -57,7 +57,7 @@ export const ClearData = async () => {
 }
 
 export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest) => {
-    const endpoint = `${api_uri}/AccountController/ConfirmEmail`;
+    const endpoint = `${api_uri}/Account/ConfirmEmail`;
     return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -70,7 +70,7 @@ export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest) => {
 }
 
 export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequest) => {
-    const endpoint = `${api_uri}/AccountController/FinishRecoverAccount`;
+    const endpoint = `${api_uri}/Account/FinishRecoverAccount`;
     return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -83,7 +83,7 @@ export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequ
 }
 
 export const LoggedIn = async () => {
-    const endpoint = `${api_uri}/AccountController/LoggedIn`;
+    const endpoint = `${api_uri}/Account/LoggedIn`;
     return await axios.get<boolean>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -96,7 +96,7 @@ export const LoggedIn = async () => {
 }
 
 export const Login = async (request: DTO.LoginRequest) => {
-    const endpoint = `${api_uri}/AccountController/Login`;
+    const endpoint = `${api_uri}/Account/Login`;
     return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -109,7 +109,7 @@ export const Login = async (request: DTO.LoginRequest) => {
 }
 
 export const LoginOAuth = async () => {
-    const endpoint = `${api_uri}/AccountController/LoginOAuth`;
+    const endpoint = `${api_uri}/Account/LoginOAuth`;
     return await axios.get<string>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -122,7 +122,7 @@ export const LoginOAuth = async () => {
 }
 
 export const Logout = async () => {
-    const endpoint = `${api_uri}/AccountController/Logout`;
+    const endpoint = `${api_uri}/Account/Logout`;
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -135,7 +135,7 @@ export const Logout = async () => {
 }
 
 export const LogoutAllDevices = async () => {
-    const endpoint = `${api_uri}/AccountController/LogoutAllDevices`;
+    const endpoint = `${api_uri}/Account/LogoutAllDevices`;
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -148,7 +148,7 @@ export const LogoutAllDevices = async () => {
 }
 
 export const OAuth = async (code: string) => {
-    const endpoint = `${api_uri}/AccountController/OAuth?code=${code}`;
+    const endpoint = `${api_uri}/Account/OAuth?code=${code}`;
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -161,7 +161,7 @@ export const OAuth = async (code: string) => {
 }
 
 export const Register = async (request: DTO.RegisterRequest) => {
-    const endpoint = `${api_uri}/AccountController/Register`;
+    const endpoint = `${api_uri}/Account/Register`;
     return await axios.post<DTO.MessageResponse>(endpoint, request)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
@@ -174,7 +174,7 @@ export const Register = async (request: DTO.RegisterRequest) => {
 }
 
 export const ResendConfirmationEmail = async () => {
-    const endpoint = `${api_uri}/AccountController/ResendConfirmationEmail`;
+    const endpoint = `${api_uri}/Account/ResendConfirmationEmail`;
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
