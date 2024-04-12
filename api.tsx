@@ -147,8 +147,8 @@ export const LogoutAllDevices = async () => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const OAuth = async (code: string) => {
-    const endpoint = `${api_uri}/Account/OAuth?code=${code}`;
+export const OAuth = async (code: string, callback: string) => {
+    const endpoint = `${api_uri}/Account/OAuth?code=${code}&callback=${callback}`;
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {
