@@ -13,15 +13,12 @@
   <ItemGroup>
     <None Remove="Data\**" />
     <None Remove="dist\**" />
+    <None Remove="Modules\**" />
     <TypeScriptConfiguration Remove="Data\**" />
     <TypeScriptConfiguration Remove="dist\**" />
+    <TypeScriptConfiguration Remove="Modules\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\workflows\master_simplistant.yml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\MainContent\" />
-    <Folder Include="Modules\LoginPanel\" />
-    <Folder Include="Modules\ErrorPanel\" />
   </ItemGroup>
 </Project>

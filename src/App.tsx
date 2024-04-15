@@ -1,23 +1,19 @@
 import { useMemo, useState } from "react";
 import "./App.css"
 
-import MainContent from "Modules/MainContent/MainContent"
-import LoginPanel from "Modules/LoginPanel/LoginPanel"
-import ErrorPanel from "Modules/ErrorPanel/ErrorPanel"
-
-import { LoggedIn } from "api";
+import * as API from "../API/api";
+import LoginPanel from "Components/LoginPanel"
+//import MainContent from "Components/MainContent"
+import MessagePanel from "Components/MessagePanel"
+//import RegisterPanel from "Components/RegisterPanel"
+//import SidePanel from "Components/SidePanel"
 
 function App() {
-
     const [loggedIn, setloggedIn] = useState<boolean>(false);
     const [errorMessage, seterrorMessage] = useState<string>("");
 
-    //Check if logged in
-    //Attempt to log in if not
-    //Display login screen if not logged in
-    //Otherwise, go to main content
     useMemo(() => {
-        LoggedIn().then(result => {
+        API.LoggedIn().then(result => {
             if (typeof result == "string") {
                 seterrorMessage(result);
             } else if (typeof result == "boolean") {
@@ -25,9 +21,14 @@ function App() {
             }
         });
     }, []);
-    
-    const content = (loggedIn ? <MainContent /> : errorMessage === "" ? <LoginPanel/> : <ErrorPanel message={errorMessage}/>);
-    return <div>{content}</div>;
+
+    const overlayPanel = !loggedIn && errorMessage === ""
+        ? <LoginPanel/>
+        : <MessagePanel title="Error" message={errorMessage} type="error"/>;
+
+    return (
+        <div>{overlayPanel}</div>
+    );
 }
 
 export default App
