@@ -21,7 +21,9 @@ function App() {
             API.LoggedIn().then(result => {
                 if (typeof result == "string") {
                     setMessage(result);
-                } else if (typeof result == "boolean") {
+                } else if (typeof result == "number") {
+                    //shouldn't ever happen
+                } else {
                     setLoggedIn(result);
                 }
 
