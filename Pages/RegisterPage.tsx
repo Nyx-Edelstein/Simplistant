@@ -50,19 +50,22 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
         API.Login(request).then(response => {
             console.log("in call");
             console.log(response);
-            console.log(response.Status);
-            console.log(response.Messages);
             setLoading(false);
             if (typeof response === "number") {
                 //Shouldn't ever happen
-            }
-            else if (typeof response === "string") {
+            } else if (typeof response === "string") {
                 setErrors([response]);
-            } else if (response.Messages.length > 0) {
-                setErrors(response.Messages);
-            } else if (response.Status === DTO.ResponseStatus.Success) {
-                setErrors([]);
-                load(Page.Main);
+            } else {
+
+                console.log(response.Status);
+                console.log(response.Messages);
+
+                if (response.Messages.length > 0) {
+                    setErrors(response.Messages);
+                } else if (response.Status === DTO.ResponseStatus.Success) {
+                    setErrors([]);
+                    load(Page.Main);
+                }
             }
         });
         e.preventDefault();
