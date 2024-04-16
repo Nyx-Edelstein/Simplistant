@@ -9,12 +9,12 @@ export default {
         themes: [
             {
                 'simplistant': {
-                    'primary': "#c24fda",
-                    'primary-focus': "#ea77f8",
+                    'primary': "#79008b",
+                    'primary-focus': "#9e1eb9",
                     'primary-content': "#ffffff",
 
-                    'secondary': "#79008b", 
-                    'secondary-focus': "#9e1eb9", 
+                    'secondary': "#c24fda",
+                    'secondary-focus': "#ea77f8",
                     'secondary-content': "#ffffff",
 
                     'accent': "#0099cf",

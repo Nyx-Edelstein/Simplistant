@@ -108,19 +108,6 @@ export const Login = async (request: DTO.LoginRequest) => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const LoginOAuth = async () => {
-    const endpoint = `${api_uri}/Account/LoginOAuth`;
-    return await axios.get<string>(endpoint)
-        .then(response => { return response.data })
-        .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status === 401) {
-                return 0;
-            } else {
-                return axiosError.message;
-            }
-        }).catch(_ => { return "An unexpected error has occurred." });
-}
-
 export const Logout = async () => {
     const endpoint = `${api_uri}/Account/Logout`;
     return await axios.get<DTO.MessageResponse>(endpoint)
@@ -136,19 +123,6 @@ export const Logout = async () => {
 
 export const LogoutAllDevices = async () => {
     const endpoint = `${api_uri}/Account/LogoutAllDevices`;
-    return await axios.get<DTO.MessageResponse>(endpoint)
-        .then(response => { return response.data })
-        .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status === 401) {
-                return 0;
-            } else {
-                return axiosError.message;
-            }
-        }).catch(_ => { return "An unexpected error has occurred." });
-}
-
-export const OAuth = async (code: string, callback: string) => {
-    const endpoint = `${api_uri}/Account/OAuth?code=${code}&callback=${callback}`;
     return await axios.get<DTO.MessageResponse>(endpoint)
         .then(response => { return response.data })
         .catch((axiosError: AxiosError) => {

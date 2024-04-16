@@ -7,8 +7,11 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
+      "API/": [ "./API/*" ],
       "Assets/*": [ "./src/Assets/*" ],
-      "Components/*": [ "./Components/*" ]
+      "Enum/*": [ "./Enum/*" ],
+      "Components/*": [ "./Components/*" ],
+      "Pages/*": [ "./Pages/*" ]
     },
 
     /* Bundler mode */

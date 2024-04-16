@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npx tailwindcss -i ./src/main.css -o ./src/App.css",
+    "build-css": "npx tailwindcss -i ./src/tailwind.css -o ./src/main.css",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.22.3",
     "react-router-dom": "^6.22.3",
+    "react-spinners": "^0.13.8",
     "tailwind-styled-components": "^2.2.0",
     "typescript": "^5.2.2",
     "vite": "^2.6.1",

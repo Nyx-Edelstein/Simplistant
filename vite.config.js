@@ -9,8 +9,11 @@ export default defineConfig({
     base: "./",
     resolve: {
         alias: {
+            API: resolve(__dirname, "./API/"),
             Assets: resolve(__dirname, "./src/Assets"),
+            Enum: resolve(__dirname, "./Enum"),
             Components: resolve(__dirname, "./Components"),
+            Pages: resolve(__dirname, "./Pages"),
         },
     },
     build: {
@@ -21,6 +24,7 @@ export default defineConfig({
             '.js': "application/javascript",
             '.mjs': "application/javascript",
             '.jsx': "application/javascript",
+            '.ts': "application/javascript",
             '.tsx': "application/javascript",
         },
     }
