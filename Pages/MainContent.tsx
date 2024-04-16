@@ -26,7 +26,7 @@ const MainContent: React.FC<Props> = ({ visible, load }): JSX.Element => {
     }, []);
 
     return visible ? (
-        <div style={{width: 128}}>
+        <div style={{width: 325}}>
             <img src={Logo} alt=""></img>
             <h1>Hello, {Username}.</h1>
             <br />
