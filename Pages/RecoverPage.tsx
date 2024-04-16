@@ -32,7 +32,7 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
         e.persist();
 
         const request = {
-            UserData: UserData,
+            userData: UserData,
         } as DTO.BeginRecoverAccountRequest;
 
         setSending(true);
@@ -43,10 +43,10 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setMessages([response]);
-            } else if (response.Status === DTO.ResponseStatus.Success) {
+            } else if (response.status === DTO.ResponseStatus.success) {
                 setRecoverySent(true);
-                if (response.Messages.length > 0) {
-                    setMessages(response.Messages);
+                if (response.messages.length > 0) {
+                    setMessages(response.messages);
                 }
             }
         });
@@ -68,9 +68,9 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
         e.persist();
 
         const request = {
-            Username: Username,
-            Password: Password,
-            RecoveryToken: RecoveryToken,
+            username: Username,
+            password: Password,
+            recoveryToken: RecoveryToken,
         } as DTO.FinishRecoverAccountRequest;
 
         setLoading(true);
@@ -81,10 +81,10 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setErrors([response]);
-            } else if (response.Messages.length > 0) {
-                setErrors(response.Messages);
+            } else if (response.messages.length > 0) {
+                setErrors(response.messages);
             }
-            else if (response.Status === DTO.ResponseStatus.Success) {
+            else if (response.status === DTO.ResponseStatus.success) {
                 load(Page.Main);
             }
         });

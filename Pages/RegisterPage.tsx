@@ -40,10 +40,10 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
         e.persist();
 
         const request = {
-            Username: Username,
-            Password: Password,
-            Email: WaiveRecovery ? "" : Email,
-            WaiveEmailRecovery: WaiveRecovery
+            username: Username,
+            password: Password,
+            email: WaiveRecovery ? "" : Email,
+            waiveEmailRecovery: WaiveRecovery
         } as DTO.RegisterRequest;
 
         setLoading(true);
@@ -54,9 +54,9 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setErrors([response]);
-            } else if (response.Messages.length > 0) {
-                setErrors(response.Messages);
-            } else if (response.Status === DTO.ResponseStatus.Success) {
+            } else if (response.messages.length > 0) {
+                setErrors(response.messages);
+            } else if (response.status === DTO.ResponseStatus.success) {
                 setErrors([]);
                 load(Page.Main);
             }

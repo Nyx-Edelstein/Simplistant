@@ -30,8 +30,8 @@ const LoginPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
         e.persist();
 
         const request = {
-            Username: Username,
-            Password: Password
+            username: Username,
+            password: Password
         } as DTO.LoginRequest;
 
         setLoading(true);
@@ -42,9 +42,9 @@ const LoginPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setErrors([response]);
-            } else if (response.Messages.length > 0) {
-                setErrors(response.Messages);
-            } else if (response.Status === DTO.ResponseStatus.Success ) {
+            } else if (response.messages.length > 0) {
+                setErrors(response.messages);
+            } else if (response.status === DTO.ResponseStatus.success ) {
                 setErrors([]);
                 load(Page.Main);
             }

@@ -1,43 +1,43 @@
 //Auto-generated type definitions
 
 export enum ResponseStatus {
-	Success,
-	Warning,
-	Error,
-	RequiresAuth,
+	success,
+	warning,
+	error,
+	requiresAuth,
 }
 
 export interface BeginRecoverAccountRequest {
-	UserData: string;
+	userData: string;
 }
 
 export interface ChangeEmailRequest {
-	Email: string;
+	email: string;
 }
 
 export interface ChangePasswordRequest {
-	OldPassword: string;
-	NewPassword: string;
+	oldPassword: string;
+	newPassword: string;
 }
 
 export interface ConfirmEmailRequest {
-	ConfirmationToken: string;
+	confirmationToken: string;
 }
 
 export interface FinishRecoverAccountRequest {
-	Username: string;
-	Password: string;
-	RecoveryToken: string;
+	username: string;
+	password: string;
+	recoveryToken: string;
 }
 
 export interface LoginRequest {
-	Username: string;
-	Password: string;
+	username: string;
+	password: string;
 }
 
 export interface MessageResponse {
-	Status: ResponseStatus;
-	Messages: string[];
+	status: ResponseStatus;
+	messages: string[];
 }
 
 export interface OAuthTokenData {
@@ -49,8 +49,8 @@ export interface OAuthTokenData {
 }
 
 export interface RegisterRequest {
-	Username: string;
-	Password: string;
-	Email: string;
-	WaiveEmailRecovery: boolean;
+	username: string;
+	password: string;
+	email: string;
+	waiveEmailRecovery: boolean;
 }
