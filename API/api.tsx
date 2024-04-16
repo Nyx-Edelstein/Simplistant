@@ -3,8 +3,17 @@ import axios, { AxiosError } from "axios"
 import * as DTO from "./dto";
 
 const api_uri = "https://simplistant-api.azurewebsites.net";
-const config: Object = { withCredentials: true };
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+const config: Object = {
+    withCredentials: true,
+    withXSRFToken: true
+};
 const axiosInstance = axios.create(config);
+axiosInstance.interceptors.response.use(
+    response => (response),
+    error => (Promise.reject(error.response.data.err))
+);
 
 export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountRequest) => {
     const endpoint = `${api_uri}/Account/BeginRecoverAccount`;
