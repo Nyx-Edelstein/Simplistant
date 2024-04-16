@@ -15,7 +15,7 @@ axiosInstance.interceptors.response.use(
     error => (Promise.reject(error.response.data.err))
 );
 
-export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountRequest): Promise<DTO.MessageResponse | "string" | 0> => {
+export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountRequest): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/BeginRecoverAccount`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
@@ -31,7 +31,7 @@ export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountReques
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ChangeEmail = async (request: DTO.ChangeEmailRequest): Promise<DTO.MessageResponse | "string" | 0> => {
+export const ChangeEmail = async (request: DTO.ChangeEmailRequest): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/ChangeEmail`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
@@ -47,7 +47,7 @@ export const ChangeEmail = async (request: DTO.ChangeEmailRequest): Promise<DTO.
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ChangePassword = async (request: DTO.ChangePasswordRequest): Promise<DTO.MessageResponse | "string" | 0> => {
+export const ChangePassword = async (request: DTO.ChangePasswordRequest): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/ChangePassword`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
@@ -63,7 +63,7 @@ export const ChangePassword = async (request: DTO.ChangePasswordRequest): Promis
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ClearData = async (): Promise<boolean | "string" | 0> => {
+export const ClearData = async (): Promise<0 | "string" | boolean> => {
     const endpoint = `${api_uri}/Account/ClearData`;
     return await axiosInstance.get<boolean>(endpoint)
         .then(response => {
@@ -79,7 +79,7 @@ export const ClearData = async (): Promise<boolean | "string" | 0> => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest): Promise<DTO.MessageResponse | "string" | 0> => {
+export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/ConfirmEmail`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
@@ -95,7 +95,7 @@ export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest): Promise<DT
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequest): Promise<DTO.MessageResponse | "string" | 0> => {
+export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequest): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/FinishRecoverAccount`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
@@ -111,7 +111,7 @@ export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequ
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const LoggedIn = async (): Promise<boolean | "string" | 0> => {
+export const LoggedIn = async (): Promise<0 | "string" | boolean> => {
     const endpoint = `${api_uri}/Account/LoggedIn`;
     return await axiosInstance.get<boolean>(endpoint)
         .then(response => {
@@ -127,7 +127,7 @@ export const LoggedIn = async (): Promise<boolean | "string" | 0> => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const Login = async (request: DTO.LoginRequest): Promise<DTO.MessageResponse | "string" | 0> => {
+export const Login = async (request: DTO.LoginRequest): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/Login`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
@@ -143,7 +143,7 @@ export const Login = async (request: DTO.LoginRequest): Promise<DTO.MessageRespo
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const Logout = async (): Promise<DTO.MessageResponse | "string" | 0> => {
+export const Logout = async (): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/Logout`;
     return await axiosInstance.get<DTO.MessageResponse>(endpoint)
         .then(response => {
@@ -159,7 +159,7 @@ export const Logout = async (): Promise<DTO.MessageResponse | "string" | 0> => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const LogoutAllDevices = async (): Promise<DTO.MessageResponse | "string" | 0> => {
+export const LogoutAllDevices = async (): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/LogoutAllDevices`;
     return await axiosInstance.get<DTO.MessageResponse>(endpoint)
         .then(response => {
@@ -175,7 +175,7 @@ export const LogoutAllDevices = async (): Promise<DTO.MessageResponse | "string"
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const Register = async (request: DTO.RegisterRequest): Promise<DTO.MessageResponse | "string" | 0> => {
+export const Register = async (request: DTO.RegisterRequest): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/Register`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
@@ -191,7 +191,7 @@ export const Register = async (request: DTO.RegisterRequest): Promise<DTO.Messag
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const ResendConfirmationEmail = async (): Promise<DTO.MessageResponse | "string" | 0> => {
+export const ResendConfirmationEmail = async (): Promise<0 | "string" | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/ResendConfirmationEmail`;
     return await axiosInstance.get<DTO.MessageResponse>(endpoint)
         .then(response => {
