@@ -24,6 +24,7 @@ function App() {
                 } else if (typeof result == "number") {
                     //shouldn't ever happen
                 } else {
+                    console.log(result);
                     setLoggedIn(result);
                 }
 
