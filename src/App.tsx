@@ -11,8 +11,8 @@ import RegisterPage from "Pages/RegisterPage"
 import "./App.css"
 
 function App() {
-    const [LoggedIn, setLoggedIn] = useState<boolean>(false);
-    const [Message, setMessage] = useState<string>("");
+    var [LoggedIn, setLoggedIn] = useState<boolean>(false);
+    var [Message, setMessage] = useState<string>("");
     const [CurrentPage, setCurrentPage] = useState<Page>(Page.Loading);
 
     const load = (page: Page) => {
@@ -20,13 +20,13 @@ function App() {
         if (page === Page.Main) {
             API.LoggedIn().then(result => {
                 if (typeof result == "string") {
-                    setMessage(result);
+                    Message = result;
+                    setMessage(Message);
                 } else if (typeof result == "number") {
                     //shouldn't ever happen
                 } else {
-                    console.log(result);
+                    LoggedIn = result;
                     setLoggedIn(result);
-                    console.log(LoggedIn);
                 }
 
                 if (Message === "" && LoggedIn) {
