@@ -19,7 +19,7 @@ export const BeginRecoverAccount = async (request: DTO.BeginRecoverAccountReques
     const endpoint = `${api_uri}/Account/BeginRecoverAccount`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -35,7 +35,7 @@ export const ChangeEmail = async (request: DTO.ChangeEmailRequest): Promise<0 | 
     const endpoint = `${api_uri}/Account/ChangeEmail`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -51,7 +51,7 @@ export const ChangePassword = async (request: DTO.ChangePasswordRequest): Promis
     const endpoint = `${api_uri}/Account/ChangePassword`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -67,7 +67,7 @@ export const ClearData = async (): Promise<0 | string | boolean> => {
     const endpoint = `${api_uri}/Account/ClearData`;
     return await axiosInstance.get<boolean>(endpoint)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -83,7 +83,7 @@ export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest): Promise<0 
     const endpoint = `${api_uri}/Account/ConfirmEmail`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -99,7 +99,23 @@ export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequ
     const endpoint = `${api_uri}/Account/FinishRecoverAccount`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
-            console.log(response);
+            //console.log(response);
+            return response.data;
+        })
+        .catch((axiosError: AxiosError) => {
+            if (axiosError.response!.status === 401) {
+                return 0;
+            } else {
+                return axiosError.message;
+            }
+        }).catch(_ => { return "An unexpected error has occurred." });
+}
+
+export const GetCurrentUser = async (): Promise<0 | string | string> => {
+    const endpoint = `${api_uri}/Account/GetCurrentUser`;
+    return await axiosInstance.get<string>(endpoint)
+        .then(response => {
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -115,7 +131,7 @@ export const LoggedIn = async (): Promise<0 | string | boolean> => {
     const endpoint = `${api_uri}/Account/LoggedIn`;
     return await axiosInstance.get<boolean>(endpoint)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -131,7 +147,7 @@ export const Login = async (request: DTO.LoginRequest): Promise<0 | string | DTO
     const endpoint = `${api_uri}/Account/Login`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -147,7 +163,7 @@ export const Logout = async (): Promise<0 | string | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/Logout`;
     return await axiosInstance.get<DTO.MessageResponse>(endpoint)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -163,7 +179,7 @@ export const LogoutAllDevices = async (): Promise<0 | string | DTO.MessageRespon
     const endpoint = `${api_uri}/Account/LogoutAllDevices`;
     return await axiosInstance.get<DTO.MessageResponse>(endpoint)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -179,7 +195,7 @@ export const Register = async (request: DTO.RegisterRequest): Promise<0 | string
     const endpoint = `${api_uri}/Account/Register`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {
@@ -195,7 +211,7 @@ export const ResendConfirmationEmail = async (): Promise<0 | string | DTO.Messag
     const endpoint = `${api_uri}/Account/ResendConfirmationEmail`;
     return await axiosInstance.get<DTO.MessageResponse>(endpoint)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.data;
         })
         .catch((axiosError: AxiosError) => {

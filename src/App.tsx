@@ -54,7 +54,7 @@ function App() {
             <LoginPage visible={CurrentPage === Page.Login} load={load} />
             <MainContent visible={CurrentPage === Page.Main} load={load} />
             <MessagePage visible={CurrentPage === Page.Message} load={load}
-                title="Error" message="Testing" type="error" />
+                title="Error" message={Message} type="error" />
             <RecoverPage visible={CurrentPage === Page.Recover} load={load} />
             <RegisterPage visible={CurrentPage === Page.Register} load={load} />
         </div>

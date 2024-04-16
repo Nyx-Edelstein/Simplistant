@@ -11,20 +11,22 @@ interface Props {
 
 const MessagePanel: React.FC<Props> = ({ visible, load, title, message, type }): JSX.Element => {
     load;
+    const color = `bg-${type}`;
     return visible ? (
         <div>
-            {title}
-            {message}
-            {type}
-            {/*<Modal open={visible}>*/}
-            {/*    <Modal.Header>{title}</Modal.Header>*/}
-            {/*    <Modal.Body>*/}
-            {/*        {message}*/}
-            {/*    </Modal.Body>*/}
-            {/*    <Modal.Actions>*/}
-            {/*        <Button color={type}>Ok</Button>*/}
-            {/*    </Modal.Actions>*/}
-            {/*</Modal>*/}
+            <input type="checkbox" id="message_modal" className="modal-toggle" checked/>
+            <div className="modal" role="dialog">
+                <div className="modal-box">
+                    <div className={color}>
+                        <h1 className="font-bold">{title}</h1>
+                    </div>
+                    <div className="bg-base-200">
+                        <p>{message}</p>
+                        <br/>
+                        <p>Please try again later. If the problem persists, contact the site administrator.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     ) : (<div></div>);
 }
