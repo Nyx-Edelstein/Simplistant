@@ -50,6 +50,8 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
         API.Login(request).then(response => {
             console.log("in call");
             console.log(response);
+            console.log(response.Status);
+            console.log(response.Messages);
             setLoading(false);
             if (typeof response === "number") {
                 //Shouldn't ever happen
