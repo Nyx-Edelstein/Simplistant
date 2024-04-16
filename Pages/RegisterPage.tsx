@@ -48,22 +48,18 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
 
         setLoading(true);
         API.Register(request).then(response => {
-            console.log("in call");
-            console.log(response);
             setLoading(false);
             if (typeof response === "number") {
                 //Shouldn't ever happen
             } else if (typeof response === "string") {
                 setErrors([response]);
+            } else if (response.status === DTO.ResponseStatus.Success) {
+                setErrors([]);
+                load(Page.Main);
             } else {
-                if (response.messages.length > 0) {
-                    setErrors(response.messages);
-                } else if (response.status === DTO.ResponseStatus.Success) {
-                    setErrors([]);
-                    load(Page.Main);
-                }
+                setErrors(response.messages);
             }
-        });
+    });
         e.preventDefault();
     };
 
