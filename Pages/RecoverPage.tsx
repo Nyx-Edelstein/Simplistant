@@ -126,7 +126,7 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
 
     return visible ? (
         <div>
-            <div className="card bg-base-300">
+            <div className="card bg-base-300" style={{ width: 325 }}>
                 <div className="card-body items-center text-center">
                     <h1 className="card-title">Account Recovery</h1>
                     <figure>
