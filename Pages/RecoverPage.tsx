@@ -43,11 +43,9 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setMessages([response]);
-            } else if (response.Status === DTO.ResponseStatus.Success) {
+            } else if (response.status === DTO.ResponseStatus.Success) {
                 setRecoverySent(true);
-                if (response.Messages.length > 0) {
-                    setMessages(response.Messages);
-                }
+                setMessages(response.messages);
             }
         });
     };
@@ -81,11 +79,11 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setErrors([response]);
-            } else if (response.Messages.length > 0) {
-                setErrors(response.Messages);
-            }
-            else if (response.Status === DTO.ResponseStatus.Success) {
-                load(Page.Main);
+            } else {
+                setErrors(response.messages);
+                if (response.status === DTO.ResponseStatus.Success) {
+                    load(Page.Main);
+                }
             }
         });
     };

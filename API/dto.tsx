@@ -36,8 +36,8 @@ export interface LoginRequest {
 }
 
 export interface MessageResponse {
-	Status: ResponseStatus;
-	Messages: string[];
+	status: ResponseStatus;
+	messages: string[];
 }
 
 export interface OAuthTokenData {

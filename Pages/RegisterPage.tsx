@@ -60,9 +60,9 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
                 console.log(response.status);
                 console.log(response.messages);
 
-                if (response.Messages.length > 0) {
-                    setErrors(response.Messages);
-                } else if (response.Status === DTO.ResponseStatus.Success) {
+                if (response.messages.length > 0) {
+                    setErrors(response.messages);
+                } else if (response.status === DTO.ResponseStatus.Success) {
                     setErrors([]);
                     load(Page.Main);
                 }
