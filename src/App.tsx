@@ -25,8 +25,8 @@ function App() {
                     setLoggedIn(result);
                 }
 
-                console.log(LoggedIn);
-                console.log(Message);
+                //console.log(LoggedIn);
+                //console.log(Message);
                 
                 if (Message === "" && LoggedIn) {
                     setCurrentPage(Page.Main);
