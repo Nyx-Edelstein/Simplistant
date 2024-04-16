@@ -47,7 +47,7 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
         } as DTO.RegisterRequest;
 
         setLoading(true);
-        API.Login(request).then(response => {
+        API.Register(request).then(response => {
             console.log("in call");
             console.log(response);
             setLoading(false);
@@ -56,10 +56,6 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
             } else if (typeof response === "string") {
                 setErrors([response]);
             } else {
-
-                console.log(response.status);
-                console.log(response.messages);
-
                 if (response.messages.length > 0) {
                     setErrors(response.messages);
                 } else if (response.status === DTO.ResponseStatus.Success) {
