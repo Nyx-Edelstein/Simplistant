@@ -57,8 +57,8 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
                 setErrors([response]);
             } else {
 
-                console.log(response.Status);
-                console.log(response.Messages);
+                console.log(response.status);
+                console.log(response.messages);
 
                 if (response.Messages.length > 0) {
                     setErrors(response.Messages);
