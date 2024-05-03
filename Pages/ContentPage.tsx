@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
-import * as API from "API/api"
 import Page from "Enum/Page"
 import Content from "Enum/Content"
 import Notes from "Components/Notes"
@@ -19,11 +18,11 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
 
     const [CurrentContent, setCurrentContent] = useState<Content>(Content.Notes);
 
-    const onNotesClicked = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+    const onNotesClicked = (_: React.MouseEvent<HTMLAnchorElement>): void => {
         setCurrentContent(Content.Notes);
     }
 
-    const onSettingsClicked = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+    const onSettingsClicked = (_: React.MouseEvent<HTMLAnchorElement>): void => {
         setCurrentContent(Content.Settings);
     }
 

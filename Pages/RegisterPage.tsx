@@ -11,7 +11,7 @@ interface Props {
     load: (page: Page) => void;
 }
 
-const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
+const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
     const [Username, setUsername] = useState<string>("");
     const [Password, setPassword] = useState<string>("");
     const [Email, setEmail] = useState<string>("");

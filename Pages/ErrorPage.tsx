@@ -10,7 +10,7 @@ const ErrorPage: React.FC<Props> = ({ load, message, }): JSX.Element => {
     load;
     return (
         <div>
-            <input type="checkbox" id="message_modal" className="modal-toggle" checked readonly="true"/>
+            <input type="checkbox" id="message_modal" className="modal-toggle" checked/>
             <div className="modal" role="dialog">
                 <div className="modal-box">
                     <div className="bg-error">

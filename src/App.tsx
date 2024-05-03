@@ -20,17 +20,17 @@ function App() {
         if (page === Page.Content) {
             API.LoggedIn().then(result => {
                 if (typeof result == "string") {
-                    //Message = result;
-                    //setMessage(Message);
-                    LoggedIn = true;
-                    setLoggedIn(true);
+                    Message = result;
+                    setMessage(Message);
+                    //LoggedIn = true;
+                    //setLoggedIn(true);
                 } else if (typeof result == "number") {
                     //shouldn't ever happen
                 } else {
-                    //LoggedIn = result;
-                    //setLoggedIn(result);
-                    LoggedIn = true;
-                    setLoggedIn(true);
+                    LoggedIn = result;
+                    setLoggedIn(result);
+                    //LoggedIn = true;
+                    //setLoggedIn(true);
                 }
 
                 if (Message === "" && LoggedIn) {
