@@ -4,8 +4,8 @@ import PulseLoader from "react-spinners/PulseLoader";
 import * as API from "API/api";
 import Page from "Enum/Page";
 import LoginPage from "Pages/LoginPage"
-import MainContent from "Pages/MainContent"
-import MessagePage from "Pages/MessagePage"
+import ContentPage from "Pages/ContentPage"
+import ErrorPage from "Pages/ErrorPage"
 import RecoverPage from "Pages/RecoverPage"
 import RegisterPage from "Pages/RegisterPage"
 import "./App.css"
@@ -17,24 +17,28 @@ function App() {
 
     const load = (page: Page) => {
         setCurrentPage(Page.Loading);
-        if (page === Page.Main) {
+        if (page === Page.Content) {
             API.LoggedIn().then(result => {
                 if (typeof result == "string") {
-                    Message = result;
-                    setMessage(Message);
+                    //Message = result;
+                    //setMessage(Message);
+                    LoggedIn = true;
+                    setLoggedIn(true);
                 } else if (typeof result == "number") {
                     //shouldn't ever happen
                 } else {
-                    LoggedIn = result;
-                    setLoggedIn(result);
+                    //LoggedIn = result;
+                    //setLoggedIn(result);
+                    LoggedIn = true;
+                    setLoggedIn(true);
                 }
 
                 if (Message === "" && LoggedIn) {
-                    setCurrentPage(Page.Main);
+                    setCurrentPage(Page.Content);
                 } else if (Message === "" && !LoggedIn) {
                     setCurrentPage(Page.Login);
                 } else {
-                    setCurrentPage(Page.Message);
+                    setCurrentPage(Page.Error);
                 }
             });
         } else {
@@ -43,20 +47,20 @@ function App() {
     }
 
     useMemo(() => {
-        load(Page.Main);
+        load(Page.Content);
     }, []);
 
     return (
         <div className="center-screen">
-            {CurrentPage == Page.Loading ? (
-                <PulseLoader color="#1eccff" />
-            ) : (<div></div>)}
-            <LoginPage visible={CurrentPage === Page.Login} load={load} />
-            <MainContent visible={CurrentPage === Page.Main} load={load} />
-            <MessagePage visible={CurrentPage === Page.Message} load={load}
-                title="Error" message={Message} type="error" />
-            <RecoverPage visible={CurrentPage === Page.Recover} load={load} />
-            <RegisterPage visible={CurrentPage === Page.Register} load={load} />
+            {
+                CurrentPage === Page.Loading ? <PulseLoader color="#1eccff" />
+              : CurrentPage === Page.Login ? <LoginPage load={load}/>
+              : CurrentPage === Page.Content ? <ContentPage load={load}/>
+              : CurrentPage === Page.Error ? <ErrorPage load={load} message={Message}/>
+              : CurrentPage === Page.Recover ? <RecoverPage load={load}/>
+              : CurrentPage === Page.Register ? <RegisterPage load={load}/>
+              : <ErrorPage load={load} message="Something went wrong. :/"/>
+            }
         </div>
     );
 }

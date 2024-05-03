@@ -8,7 +8,6 @@ import Logo from "Assets/logo.png"
 import "./RegisterPage.css"
 
 interface Props {
-    visible: boolean;
     load: (page: Page) => void;
 }
 
@@ -55,7 +54,7 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
                 setErrors([response]);
             } else if (response.status === DTO.ResponseStatus.Success) {
                 setErrors([]);
-                load(Page.Main);
+                load(Page.Content);
             } else {
                 setErrors(response.messages);
             }
@@ -81,7 +80,7 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
         <PulseLoader color="#1eccff" />
     ) : (<div></div>);
 
-    return visible ? (
+    return (
         <div>
             <div className="card bg-base-300" style={{width: 325}}>
                 <div className="card-body items-center text-center">
@@ -110,7 +109,7 @@ const RegisterPage: React.FC<Props> = ({ visible, load }): JSX.Element => {
                 </div>
             </div>
         </div>
-    ) : (<div></div>);
+    );
 }
 
 export default RegisterPage

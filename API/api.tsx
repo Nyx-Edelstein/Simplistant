@@ -175,22 +175,6 @@ export const Logout = async (): Promise<0 | string | DTO.MessageResponse> => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const LogoutAllDevices = async (): Promise<0 | string | DTO.MessageResponse> => {
-    const endpoint = `${api_uri}/Account/LogoutAllDevices`;
-    return await axiosInstance.get<DTO.MessageResponse>(endpoint)
-        .then(response => {
-            //console.log(response);
-            return response.data;
-        })
-        .catch((axiosError: AxiosError) => {
-            if (axiosError.response!.status === 401) {
-                return 0;
-            } else {
-                return axiosError.message;
-            }
-        }).catch(_ => { return "An unexpected error has occurred." });
-}
-
 export const Register = async (request: DTO.RegisterRequest): Promise<0 | string | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/Register`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)

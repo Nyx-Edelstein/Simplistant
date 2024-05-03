@@ -1,24 +1,20 @@
 import Page from "Enum/Page"
-import "./MessagePage.css"
+import "./ErrorPage.css"
 
 interface Props {
-    visible: boolean;
     load: (page: Page) => void;
-    title: string;
     message: string;
-    type: "info" | "success" | "warning" | "error";
 }
 
-const MessagePanel: React.FC<Props> = ({ visible, load, title, message, type }): JSX.Element => {
+const ErrorPage: React.FC<Props> = ({ load, message, }): JSX.Element => {
     load;
-    const color = `bg-${type}`;
-    return visible ? (
+    return (
         <div>
-            <input type="checkbox" id="message_modal" className="modal-toggle" checked/>
+            <input type="checkbox" id="message_modal" className="modal-toggle" checked readonly="true"/>
             <div className="modal" role="dialog">
                 <div className="modal-box">
-                    <div className={color}>
-                        <h1 className="font-bold">{title}</h1>
+                    <div className="bg-error">
+                        <h1 className="font-bold">Error</h1>
                     </div>
                     <div className="bg-base-200">
                         <p>{message}</p>
@@ -28,7 +24,7 @@ const MessagePanel: React.FC<Props> = ({ visible, load, title, message, type }):
                 </div>
             </div>
         </div>
-    ) : (<div></div>);
+    );
 }
 
-export default MessagePanel
+export default ErrorPage

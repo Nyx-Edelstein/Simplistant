@@ -22,6 +22,6 @@
     <None Include=".github\workflows\master_simplistant.yml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enum\" />
+    <Folder Include="Components\" />
   </ItemGroup>
 </Project>

@@ -8,11 +8,10 @@ import Logo from "Assets/logo.png"
 import "./RecoverPage.css"
 
 interface Props {
-    visible: boolean;
     load: (page: Page) => void;
 }
 
-const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
+const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
     const [UserData, setUserData] = useState<string>("");
     const [Messages, setMessages] = useState<string[]>([]);
     const [Sending, setSending] = useState<boolean>(false);
@@ -82,7 +81,7 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
             } else {
                 setErrors(response.messages);
                 if (response.status === DTO.ResponseStatus.Success) {
-                    load(Page.Main);
+                    load(Page.Content);
                 }
             }
         });
@@ -124,7 +123,7 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
         <PulseLoader color="#1eccff" />
     ) : (<div></div>);
 
-    return visible ? (
+    return (
         <div>
             <div className="card bg-base-300" style={{ width: 325 }}>
                 <div className="card-body items-center text-center">
@@ -155,7 +154,7 @@ const RecoverPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
                 </div>
             </div>
         </div>
-    ) : (<div></div>);
+    );
 }
 
 export default RecoverPanel

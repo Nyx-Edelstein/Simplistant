@@ -8,11 +8,10 @@ import Logo from "Assets/logo.png"
 import "./LoginPage.css"
 
 interface Props {
-    visible: boolean;
     load: (page: Page) => void;
 }
 
-const LoginPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
+const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
     const [Username, setUsername] = useState<string>("");
     const [Password, setPassword] = useState<string>("");
     const [Errors, setErrors] = useState<string[]>([]);
@@ -46,7 +45,7 @@ const LoginPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
                 setErrors(response.messages);
             } else if (response.status === DTO.ResponseStatus.Success ) {
                 setErrors([]);
-                load(Page.Main);
+                load(Page.Content);
             }
         });
         e.preventDefault();
@@ -80,7 +79,7 @@ const LoginPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
         <PulseLoader color="#1eccff" />
     ) : (<div></div>);
 
-    return visible ? (
+    return (
         <div>
             <div className="card bg-base-300" style={{ width: 325 }}>
                 <div className="card-body items-center text-center">
@@ -110,7 +109,7 @@ const LoginPanel: React.FC<Props> = ({ visible, load }): JSX.Element => {
                 </div>
             </div>
         </div>
-    ) : (<div></div>);
+    );
 }
 
 export default LoginPanel

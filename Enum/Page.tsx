@@ -1,8 +1,8 @@
 enum Page {
     Loading,
     Login,
-    Main,
-    Message,
+    Content,
+    Error,
     Recover,
     Register
 }
