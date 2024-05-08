@@ -102,7 +102,7 @@ const EmailConfirmation: React.FC<Props> = (): JSX.Element => {
             <div className="card-body">
                 <h2 className="card-title">Email Confirmation</h2>
                 { EmailConfirmed ? (
-                    <p className="text-success">Email address has already been confirmed.</p>
+                    <p className="text-success">Email address has been confirmed.</p>
                 ) : (
                     <div className="form-container-med">
                         <input type="text" placeholder="Confirmation Token" className="input input-bordered input-accent flex w-full" value={ConfirmationToken} onChange={onConfirmationTokenChanged} />
