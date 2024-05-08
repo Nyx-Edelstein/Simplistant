@@ -51,7 +51,7 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
                     <br />
                 </div>
             </div>
-            <div>
+            <div className="selected-component">
                 {
                     CurrentContent === Content.Notes ? <Notes/>
                   : CurrentContent === Content.Settings ? <AccountSettings/>

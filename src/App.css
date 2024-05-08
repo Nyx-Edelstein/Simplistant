@@ -24,3 +24,11 @@
     text-align: center;
     font-size: 10px;
 }
+
+.form-container-med {
+    width: 350px;
+}
+
+.form-container-med > * {
+    margin: 5px 0
+}

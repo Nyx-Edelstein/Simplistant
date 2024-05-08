@@ -95,6 +95,22 @@ export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest): Promise<0 
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
+export const EmailConfirmed = async (): Promise<0 | string | boolean> => {
+    const endpoint = `${api_uri}/Account/EmailConfirmed`;
+    return await axiosInstance.get<boolean>(endpoint)
+        .then(response => {
+            //console.log(response);
+            return response.data;
+        })
+        .catch((axiosError: AxiosError) => {
+            if (axiosError.response!.status === 401) {
+                return 0;
+            } else {
+                return axiosError.message;
+            }
+        }).catch(_ => { return "An unexpected error has occurred." });
+}
+
 export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequest): Promise<0 | string | DTO.MessageResponse> => {
     const endpoint = `${api_uri}/Account/FinishRecoverAccount`;
     return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)

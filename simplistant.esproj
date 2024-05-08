@@ -21,7 +21,4 @@
   <ItemGroup>
     <None Include=".github\workflows\master_simplistant.yml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
 </Project>
