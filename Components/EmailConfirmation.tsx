@@ -16,12 +16,11 @@ const EmailConfirmation: React.FC<Props> = (): JSX.Element => {
     const [ConfirmationToken, setConfirmationToken] = useState<string>("");
     const [Messages, setMessages] = useState<string[]>([]);
     const [Loading, setLoading] = useState<boolean>(false);
-    const [EmailSent, setEmailSent] = useState<boolean>(false);
+    var [EmailSent, setEmailSent] = useState<boolean>(false);
     const [Sending, setSending] = useState<boolean>(false);
 
     useEffect(() => {
         API.EmailConfirmed().then(result => {
-            console.log(result);
             if (typeof result == "string") {
                 //todo: more general error handling?
             } else if (typeof result == "number") {
@@ -63,6 +62,7 @@ const EmailConfirmation: React.FC<Props> = (): JSX.Element => {
 
         setSending(true);
         API.ResendConfirmationEmail().then(response => {
+            console.log(response);
             setSending(false);
             if (typeof response === "number") {
                 //Shouldn't ever happen
@@ -70,6 +70,7 @@ const EmailConfirmation: React.FC<Props> = (): JSX.Element => {
             else if (typeof response === "string") {
                 setMessages([response]);
             } else if (response.status === DTO.ResponseStatus.Success) {
+                EmailSent = true;
                 setEmailSent(true);
             }
         });
@@ -110,7 +111,7 @@ const EmailConfirmation: React.FC<Props> = (): JSX.Element => {
                                 Confirm Email</button>
                         <div className="divider" />
                         <div className="text-center">
-                                {resendElement}
+                            {resendElement}
                         </div>
                     </div>
                 )}
