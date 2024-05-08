@@ -9238,6 +9238,10 @@ html:has(.drawer-open.drawer-open) {
   width: 1.25rem;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
 .w-\[this-is\\\\\] {
   width: this-is\\;
 }
