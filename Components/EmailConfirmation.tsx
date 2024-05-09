@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import PulseLoader from "react-spinners/PulseLoader";
 import BeatLoader from "react-spinners/BeatLoader";
 
@@ -8,28 +8,15 @@ import * as DTO from "API/dto"
 import "./EmailConfirmation.css"
 
 interface Props {
-
+    setEmailConfirmed: (emailConfirmed: boolean) => void;
 }
 
-const EmailConfirmation: React.FC<Props> = (): JSX.Element => {
-    const [EmailConfirmed, setEmailConfirmed] = useState<boolean>(false);
+const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element => {
     const [ConfirmationToken, setConfirmationToken] = useState<string>("");
     const [Messages, setMessages] = useState<string[]>([]);
     const [Loading, setLoading] = useState<boolean>(false);
     var [EmailSent, setEmailSent] = useState<boolean>(false);
     const [Sending, setSending] = useState<boolean>(false);
-
-    useEffect(() => {
-        API.EmailConfirmed().then(result => {
-            if (typeof result == "string") {
-                //todo: more general error handling?
-            } else if (typeof result == "number") {
-                //shouldn't ever happen
-            } else {
-                setEmailConfirmed(result);
-            }
-        });
-    }, []);
 
     const onConfirmationTokenChanged = (e: React.FormEvent<HTMLInputElement>): void => {
         setConfirmationToken(e.currentTarget.value);
@@ -101,20 +88,16 @@ const EmailConfirmation: React.FC<Props> = (): JSX.Element => {
         <div className="card w-96 bg-neutral text-neutral-content">
             <div className="card-body">
                 <h2 className="card-title">Email Confirmation</h2>
-                { EmailConfirmed ? (
-                    <p className="text-success">Email address has been confirmed.</p>
-                ) : (
-                    <div className="form-container-med">
-                        <input type="text" placeholder="Confirmation Token" className="input input-bordered input-accent flex w-full" value={ConfirmationToken} onChange={onConfirmationTokenChanged} />
-                        {messagesElement}
-                        <button className="btn btn-accent flex w-full" onClick={ConfirmEmail}>
-                                Confirm Email</button>
-                        <div className="divider" />
-                        <div className="text-center">
-                            {resendElement}
-                        </div>
+                <div className="form-container-med">
+                    <input type="text" placeholder="Confirmation Token" className="input input-bordered input-accent flex w-full" value={ConfirmationToken} onChange={onConfirmationTokenChanged} />
+                    {messagesElement}
+                    <button className="btn btn-accent flex w-full" onClick={ConfirmEmail}>
+                            Confirm Email</button>
+                    <div className="divider" />
+                    <div className="text-center">
+                        {resendElement}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

@@ -95,9 +95,9 @@ export const ConfirmEmail = async (request: DTO.ConfirmEmailRequest): Promise<0 
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const EmailConfirmed = async (): Promise<0 | string | boolean> => {
-    const endpoint = `${api_uri}/Account/EmailConfirmed`;
-    return await axiosInstance.get<boolean>(endpoint)
+export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequest): Promise<0 | string | DTO.MessageResponse> => {
+    const endpoint = `${api_uri}/Account/FinishRecoverAccount`;
+    return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
         .then(response => {
             //console.log(response);
             return response.data;
@@ -111,9 +111,9 @@ export const EmailConfirmed = async (): Promise<0 | string | boolean> => {
         }).catch(_ => { return "An unexpected error has occurred." });
 }
 
-export const FinishRecoverAccount = async (request: DTO.FinishRecoverAccountRequest): Promise<0 | string | DTO.MessageResponse> => {
-    const endpoint = `${api_uri}/Account/FinishRecoverAccount`;
-    return await axiosInstance.post<DTO.MessageResponse>(endpoint, request)
+export const GetAccountInfo = async (): Promise<0 | string | DTO.AccountInfo> => {
+    const endpoint = `${api_uri}/Account/GetAccountInfo`;
+    return await axiosInstance.get<DTO.AccountInfo>(endpoint)
         .then(response => {
             //console.log(response);
             return response.data;

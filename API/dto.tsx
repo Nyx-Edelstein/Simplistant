@@ -7,12 +7,20 @@ export enum ResponseStatus {
 	RequiresAuth,
 }
 
+export interface AccountInfo {
+	Username: string;
+	IsOAuthAccount: boolean;
+	Email: string;
+	EmailConfirmed: boolean;
+}
+
 export interface BeginRecoverAccountRequest {
 	UserData: string;
 }
 
 export interface ChangeEmailRequest {
-	Email: string;
+	NewEmail: string;
+	Password: string;
 }
 
 export interface ChangePasswordRequest {

@@ -26,6 +26,7 @@ function App() {
                     //setLoggedIn(true);
                 } else if (typeof result == "number") {
                     //shouldn't ever happen
+                    setMessage("Something went wrong.");
                 } else {
                     LoggedIn = result;
                     setLoggedIn(result);
