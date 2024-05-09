@@ -44,7 +44,7 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
     return (
         <div className="main-content">
             <div className="sidebar bg-base-200 rounded">
-                <div className="menu">
+                <div className="menu sidebar-top">
                     <ul>
                         <li>
                             <a className="tooltip tooltip-right" data-tip="Notes" onClick={onNotesClicked}>
@@ -53,8 +53,7 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
                         </li>
                     </ul>
                 </div>
-                <div></div>
-                <div className="menu">
+                <div className="menu sidebar-bottom">
                     <div className="divider"></div>
                     <ul>
                         <li>

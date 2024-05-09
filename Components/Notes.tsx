@@ -24,7 +24,7 @@ const Notes: React.FC<Props> = (): JSX.Element => {
     }, []);
     
     return (
-        <div className="center-screen">
+        <div className="center-component">
             <div style={{ width: 325 }}>
                 <img src={Logo} alt=""></img>
                 <h1>Hello, {Username}.</h1>
