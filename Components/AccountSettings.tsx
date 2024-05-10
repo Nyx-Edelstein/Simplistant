@@ -12,9 +12,8 @@ interface Props {
 }
 
 const AccountSettings: React.FC<Props> = (): JSX.Element => {
-    var [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
-    var [Email, setEmail] = useState<string>("");
-    var [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
+    const [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
+    const [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
 
     useEffect(() => {
         API.GetAccountInfo().then(result => {
@@ -23,27 +22,18 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
             } else if (typeof result == "number") {
                 //shouldn't ever happen
             } else {
-                console.log(result);
-                IsOAuthAccount = result.IsOAuthAccount;
-                setIsOAuthAccount(IsOAuthAccount);
-                Email = result.Email;
-                setEmail(Email);
-                IsEmailConfirmed = result.EmailConfirmed;
+                setIsOAuthAccount(result.IsOAuthAccount);
                 setIsEmailConfirmed(result.EmailConfirmed);
             }
         });
     }, []);
 
     const setEmailConfirmed = (emailConfirmed: boolean) => {
-        IsEmailConfirmed = emailConfirmed;
-        setIsEmailConfirmed(IsEmailConfirmed);
+        setIsEmailConfirmed(emailConfirmed);
     }
 
     const setNewEmail = (newEmail: string) => {
-        Email = newEmail;
-        setEmail(Email);
-        IsEmailConfirmed = false;
-        setIsEmailConfirmed(IsEmailConfirmed);
+        setIsEmailConfirmed(false);
     }
 
     return (
