@@ -42,6 +42,8 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
                 setMessages(response.messages);
             }
         });
+
+        e.preventDefault();
     };
 
     const Resend = (e: React.MouseEvent<HTMLAnchorElement>): void => {

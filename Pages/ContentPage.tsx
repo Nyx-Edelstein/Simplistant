@@ -39,6 +39,7 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
                 load(Page.Login);
             }
         });
+        e.preventDefault();
     };
 
     return (

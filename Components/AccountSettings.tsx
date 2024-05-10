@@ -24,17 +24,22 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
             } else {
                 setIsOAuthAccount(result.IsOAuthAccount);
                 setIsEmailConfirmed(result.EmailConfirmed);
+                this.forceUpdate();
             }
         });
     }, []);
 
     const setEmailConfirmed = (emailConfirmed: boolean) => {
         setIsEmailConfirmed(emailConfirmed);
+        this.forceUpdate();
     }
 
     const setNewEmail = (_: string) => {
         setIsEmailConfirmed(false);
+        this.forceUpdate();
     }
+
+
 
     return (
         <div>
