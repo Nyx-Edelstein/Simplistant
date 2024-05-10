@@ -13,7 +13,9 @@ interface Props {
 }
 
 const AccountSettings: React.FC<Props> = (): JSX.Element => {
-    const [AccountInfo, setAccountInfo] = useState<DTO.AccountInfo>({} as DTO.AccountInfo);
+    const [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
+    var [Email, setEmail] = useState<string>("");
+    var [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
 
     useMemo(() => {
         API.GetAccountInfo().then(result => {
@@ -22,25 +24,28 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
             } else if (typeof result == "number") {
                 //shouldn't ever happen
             } else {
-                setAccountInfo(result);
+                setIsOAuthAccount(result.IsOAuthAccount);
+                setEmail(result.Email);
+                setIsEmailConfirmed(result.EmailConfirmed);
             }
         });
     }, []);
 
     const setEmailConfirmed = (emailConfirmed: boolean) => {
-        AccountInfo.EmailConfirmed = emailConfirmed;
-        setAccountInfo(AccountInfo);
+        IsEmailConfirmed = emailConfirmed;
+        setIsEmailConfirmed(IsEmailConfirmed);
     }
 
     const setNewEmail = (newEmail: string) => {
-        AccountInfo.Email = newEmail;
-        AccountInfo.EmailConfirmed = false;
-        setAccountInfo(AccountInfo);
+        Email = newEmail;
+        setEmail(Email);
+        IsEmailConfirmed = false;
+        setIsEmailConfirmed(IsEmailConfirmed);
     }
 
     return (
         <div>
-            {AccountInfo.IsOAuthAccount ? (
+            {IsOAuthAccount ? (
                 <div className="card w-96 bg-neutral text-neutral-content">
                     <div className="card-body">
                         <h2 className="card-title">OAuth Account</h2>
@@ -49,7 +54,7 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
                 </div>
             ) : (
                 <div>
-                    {AccountInfo.EmailConfirmed ? (<div/>) : (
+                    {IsEmailConfirmed ? (<div/>) : (
                         <EmailConfirmation setEmailConfirmed={setEmailConfirmed}/>
                     )}
                     <div className="divider"></div>
