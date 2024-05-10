@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react"
 
 import * as API from "API/api"
-import * as DTO from "API/dto"
 import EmailConfirmation from "Components/EmailConfirmation"
 import ChangeEmail from "Components/ChangeEmail"
 import ChangePassword from "Components/ChangePassword"
