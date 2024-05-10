@@ -43,8 +43,6 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
                 setMessages(response.messages);
             }
         });
-
-        e.preventDefault();
     };
 
     const messagesElement = Messages.length > 0 ? (

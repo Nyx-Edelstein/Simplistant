@@ -20,10 +20,10 @@ function App() {
         if (page === Page.Content) {
             API.LoggedIn().then(result => {
                 if (typeof result == "string") {
-                    //Message = result;
-                    //setMessage(Message);
-                    LoggedIn = true;
-                    setLoggedIn(true);
+                    Message = result;
+                    setMessage(Message);
+                    //LoggedIn = true;
+                    //setLoggedIn(true);
                 } else if (typeof result == "number") {
                     //shouldn't ever happen
                     setMessage("Something went wrong.");

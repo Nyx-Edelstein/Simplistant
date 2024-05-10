@@ -45,8 +45,6 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
                 setMessages(response.messages);
             }
         });
-
-        e.preventDefault();
     };
 
     const messagesElement = Messages.length > 0 ? (
