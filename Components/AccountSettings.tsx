@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 
 import * as API from "API/api"
 import EmailConfirmation from "Components/EmailConfirmation"
@@ -12,19 +12,23 @@ interface Props {
 }
 
 const AccountSettings: React.FC<Props> = (): JSX.Element => {
-    const [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
+    var [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
     var [Email, setEmail] = useState<string>("");
     var [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
 
-    useMemo(() => {
+    useEffect(() => {
         API.GetAccountInfo().then(result => {
             if (typeof result == "string") {
                 //todo: more general error handling?
             } else if (typeof result == "number") {
                 //shouldn't ever happen
             } else {
-                setIsOAuthAccount(result.IsOAuthAccount);
-                setEmail(result.Email);
+                console.log(result);
+                IsOAuthAccount = result.IsOAuthAccount;
+                setIsOAuthAccount(IsOAuthAccount);
+                Email = result.Email;
+                setEmail(Email);
+                IsEmailConfirmed = result.EmailConfirmed;
                 setIsEmailConfirmed(result.EmailConfirmed);
             }
         });
