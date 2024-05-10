@@ -32,7 +32,7 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
         setIsEmailConfirmed(emailConfirmed);
     }
 
-    const setNewEmail = (newEmail: string) => {
+    const setNewEmail = (_: string) => {
         setIsEmailConfirmed(false);
     }
 
