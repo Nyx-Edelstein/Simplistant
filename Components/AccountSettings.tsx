@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useReducer } from "react"
 
 import * as API from "API/api"
 import EmailConfirmation from "Components/EmailConfirmation"
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const AccountSettings: React.FC<Props> = (): JSX.Element => {
+    const [_, forceUpdate] = useReducer(x => x + 1, 0);
     const [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
     const [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
 
@@ -24,22 +25,20 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
             } else {
                 setIsOAuthAccount(result.IsOAuthAccount);
                 setIsEmailConfirmed(result.EmailConfirmed);
-                this.forceUpdate();
+                forceUpdate();
             }
         });
     }, []);
 
     const setEmailConfirmed = (emailConfirmed: boolean) => {
         setIsEmailConfirmed(emailConfirmed);
-        this.forceUpdate();
+        forceUpdate();
     }
 
     const setNewEmail = (_: string) => {
         setIsEmailConfirmed(false);
-        this.forceUpdate();
+        forceUpdate();
     }
-
-
 
     return (
         <div>
