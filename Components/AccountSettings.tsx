@@ -25,8 +25,14 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
                 setIsOAuthAccount(result.IsOAuthAccount);
                 IsEmailConfirmed = result.EmailConfirmed;
                 setIsEmailConfirmed(result.EmailConfirmed);
+                console.log("call completed");
+                console.log(IsOAuthAccount);
+                console.log(IsEmailConfirmed);
             }
         });
+        console.log("after call");
+        console.log(IsOAuthAccount);
+        console.log(IsEmailConfirmed);
     }
 
     useMemo(() => {
