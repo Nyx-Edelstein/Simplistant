@@ -37,7 +37,7 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setMessages([response]);
-            } else if (response.status === DTO.ResponseStatus.Success) {
+            } else {
                 setMessages(response.messages);
             }
         });

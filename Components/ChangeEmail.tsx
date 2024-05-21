@@ -41,6 +41,8 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
             } else if (response.status === DTO.ResponseStatus.Success) {
                 setNewEmail(Email);
                 setMessages(response.messages);
+            } else {
+                setMessages(response.messages);
             }
         });
     };
