@@ -17,6 +17,7 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
     const [Loading, setLoading] = useState<boolean>(false);
     var [EmailSent, setEmailSent] = useState<boolean>(false);
     const [Sending, setSending] = useState<boolean>(false);
+    const [MessageType, setMessageType] = useState<string>("error");
 
     const onConfirmationTokenChanged = (e: React.FormEvent<HTMLInputElement>): void => {
         setConfirmationToken(e.currentTarget.value);
@@ -59,16 +60,18 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
                 EmailSent = true;
                 setEmailSent(true);
                 setMessages(response.messages);
+                setMessageType("success");
             } else {
                 setMessages(response.messages);
+                setMessageType("error");
             }
         });
 
     }
 
     const messagesElement = Messages.length > 0 ? (
-        <div className="bg-base-200 rounded-box border border-error flex w-full">
-            <ul className="text-error text-center items-center" style={{ margin: "15px" }}>
+        <div className={`bg-base-200 rounded-box border border-${MessageType} flex w-full`}>
+            <ul className={`${MessageType} text-center items-center`} style={{ margin: "15px" }}>
                 {Messages.map((e, i) => {
                     return <li key={i}>{e}</li>;
                 })}

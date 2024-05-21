@@ -14,6 +14,7 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
     const [NewPassword, setNewPassword] = useState<string>("");
     const [Messages, setMessages] = useState<string[]>([]);
     const [Loading, setLoading] = useState<boolean>(false);
+    const [MessageType, setMessageType] = useState<string>("error");
 
     const onOldPasswordChanged = (e: React.FormEvent<HTMLInputElement>): void => {
         setOldPassword(e.currentTarget.value);
@@ -37,15 +38,19 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
             }
             else if (typeof response === "string") {
                 setMessages([response]);
+            } else if (response.status === DTO.ResponseStatus.Success) {
+                setMessages(response.messages);
+                setMessageType("success");
             } else {
                 setMessages(response.messages);
+                setMessageType("error");
             }
         });
     };
 
     const messagesElement = Messages.length > 0 ? (
-        <div className="bg-base-200 rounded-box border border-error flex w-full">
-            <ul className="text-error text-center items-center" style={{ margin: "15px" }}>
+        <div className={`bg-base-200 rounded-box border border-${MessageType} flex w-full`}>
+            <ul className={`${MessageType} text-center items-center`} style={{ margin: "15px" }}>
                 {Messages.map((e, i) => {
                     return <li key={i}>{e}</li>;
                 })}
