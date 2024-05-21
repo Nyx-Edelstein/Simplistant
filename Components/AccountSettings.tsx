@@ -71,6 +71,8 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
         </div>
     );
 
+    console.log("render");
+
     return (IsOAuthAccount ? OAuthElement : settingsElement);
 }
 
