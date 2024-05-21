@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import PulseLoader from "react-spinners/PulseLoader";
 
 import * as API from "API/api"
 
@@ -22,8 +23,12 @@ const Notes: React.FC<Props> = (): JSX.Element => {
             }
         });
     }, []);
+
+    const loadingElement = (
+        <PulseLoader color="#1eccff" />
+    );
     
-    return (
+    return (Username === "" ? loadingElement : (
         <div className="center-component">
             <div style={{ width: 325 }}>
                 <img src={Logo} alt=""></img>
@@ -32,7 +37,7 @@ const Notes: React.FC<Props> = (): JSX.Element => {
                 <p>This site is still in progress. Come back later.</p>
             </div>
         </div>
-    );
+    ));
 }
 
 export default Notes

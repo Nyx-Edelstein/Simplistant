@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react"
+import PulseLoader from "react-spinners/PulseLoader";
 
 import * as API from "API/api"
 import EmailConfirmation from "Components/EmailConfirmation"
@@ -13,10 +14,10 @@ interface Props {
 const AccountSettings: React.FC<Props> = (): JSX.Element => {
     var [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
     var [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
+    const [Loaded, setLoaded] = useState<boolean>(false);
 
     const load = () => {
         API.GetAccountInfo().then(result => {
-            console.log(result);
             if (typeof result == "string") {
                 //todo: more general error handling?
             } else if (typeof result == "number") {
@@ -24,14 +25,9 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
             } else {
                 setIsOAuthAccount(result.isOAuthAccount);
                 setIsEmailConfirmed(result.emailConfirmed);
-                console.log("call completed");
-                console.log(IsOAuthAccount);
-                console.log(IsEmailConfirmed);
+                setLoaded(true);
             }
         });
-        console.log("after call");
-        console.log(IsOAuthAccount);
-        console.log(IsEmailConfirmed);
     }
 
     useMemo(() => {
@@ -47,6 +43,10 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
         IsEmailConfirmed = false;
         setIsEmailConfirmed(false);
     }
+
+    const LoadingElement = (
+        <PulseLoader color="#1eccff" />
+    );
 
     const OAuthElement = (
         <div className="card w-96 bg-neutral text-neutral-content">
@@ -71,7 +71,10 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
 
     console.log("render");
 
-    return (IsOAuthAccount ? OAuthElement : settingsElement);
+    return (Loaded
+        ? (IsOAuthAccount ? OAuthElement : settingsElement)
+        : LoadingElement
+    );
 }
 
 export default AccountSettings

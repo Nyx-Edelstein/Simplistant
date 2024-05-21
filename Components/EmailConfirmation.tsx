@@ -47,7 +47,6 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
 
         setSending(true);
         API.ResendConfirmationEmail().then(response => {
-            console.log(response);
             setSending(false);
             if (typeof response === "number") {
                 //Shouldn't ever happen
