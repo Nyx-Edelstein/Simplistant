@@ -52,7 +52,7 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
 
     const messagesElement = Messages.length > 0 ? (
         <div className={`bg-base-200 rounded-box border border-${MessageType} flex w-full`}>
-            <ul className={`${MessageType} text-center items-center`} style={{ margin: "15px" }}>
+            <ul className={`text-${MessageType} text-center items-center`} style={{ margin: "15px" }}>
                 {Messages.map((e, i) => {
                     return <li key={i}>{e}</li>;
                 })}
