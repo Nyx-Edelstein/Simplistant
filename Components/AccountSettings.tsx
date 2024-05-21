@@ -16,6 +16,7 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
 
     const load = () => {
         API.GetAccountInfo().then(result => {
+            console.log(result);
             if (typeof result == "string") {
                 //todo: more general error handling?
             } else if (typeof result == "number") {
