@@ -23,9 +23,7 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
         setNewPassword(e.currentTarget.value);
     };
 
-    const ChangePassword = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-
+    const ChangePassword = (_: React.MouseEvent<HTMLButtonElement>): void => {
         const request = {
             OldPassword: OldPassword,
             NewPassword: NewPassword

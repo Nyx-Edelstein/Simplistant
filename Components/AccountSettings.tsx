@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useMemo, useState } from "react"
 
 import * as API from "API/api"
 import EmailConfirmation from "Components/EmailConfirmation"
@@ -8,58 +8,63 @@ import ChangePassword from "Components/ChangePassword"
 import "./AccountSettings.css"
 
 interface Props {
-
 }
 
 const AccountSettings: React.FC<Props> = (): JSX.Element => {
-    const [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
-    const [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
+    var [IsOAuthAccount, setIsOAuthAccount] = useState<boolean>(false);
+    var [IsEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
 
-    useEffect(() => {
+    const load = () => {
         API.GetAccountInfo().then(result => {
             if (typeof result == "string") {
                 //todo: more general error handling?
             } else if (typeof result == "number") {
                 //shouldn't ever happen
             } else {
+                IsOAuthAccount = result.IsOAuthAccount;
                 setIsOAuthAccount(result.IsOAuthAccount);
+                IsEmailConfirmed = result.EmailConfirmed;
                 setIsEmailConfirmed(result.EmailConfirmed);
             }
         });
+    }
+
+    useMemo(() => {
+        load();
     }, []);
 
     const setEmailConfirmed = (emailConfirmed: boolean) => {
+        IsEmailConfirmed = emailConfirmed;
         setIsEmailConfirmed(emailConfirmed);
     }
 
     const setNewEmail = (_: string) => {
+        IsEmailConfirmed = false;
         setIsEmailConfirmed(false);
     }
 
-    const settingsElement = IsOAuthAccount ? (
+    const OAuthElement = (
         <div className="card w-96 bg-neutral text-neutral-content">
             <div className="card-body">
                 <h2 className="card-title">OAuth Account</h2>
                 <p>This is an OAuth account and has no settings to configure.</p>
             </div>
         </div>
-    ) : (
+    );
+
+    const settingsElement = (
         <div>
-            {IsEmailConfirmed ? (<div/>) : (
-                <EmailConfirmation setEmailConfirmed={setEmailConfirmed}/>
+            {IsEmailConfirmed ? (<div />) : (
+                <EmailConfirmation setEmailConfirmed={setEmailConfirmed} />
             )}
             <div className="divider"></div>
-            <ChangeEmail setNewEmail={setNewEmail}/>
+            <ChangeEmail setNewEmail={setNewEmail} />
             <div className="divider"></div>
-            <ChangePassword/>
+            <ChangePassword />
         </div>
     );
 
-    return (
-        <div>
-            {settingsElement}
-        </div>
-    );
+    return (IsOAuthAccount ? OAuthElement : settingsElement);
 }
 
 export default AccountSettings

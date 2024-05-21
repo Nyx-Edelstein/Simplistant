@@ -24,9 +24,7 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
         setPassword(e.currentTarget.value);
     };
 
-    const ChangeEmail = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-
+    const ChangeEmail = (_: React.MouseEvent<HTMLButtonElement>): void => {
         const request = {
             NewEmail: Email,
             Password: Password

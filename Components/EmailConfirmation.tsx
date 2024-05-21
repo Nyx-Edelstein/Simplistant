@@ -22,9 +22,7 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
         setConfirmationToken(e.currentTarget.value);
     };
 
-    const ConfirmEmail = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-
+    const ConfirmEmail = (_: React.MouseEvent<HTMLButtonElement>): void => {
         const request = {
             ConfirmationToken: ConfirmationToken,
         } as DTO.ConfirmEmailRequest;
