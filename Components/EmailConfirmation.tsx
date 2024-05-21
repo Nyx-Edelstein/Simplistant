@@ -24,7 +24,7 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
 
     const ConfirmEmail = (_: React.MouseEvent<HTMLButtonElement>): void => {
         const request = {
-            ConfirmationToken: ConfirmationToken,
+            confirmationToken: ConfirmationToken,
         } as DTO.ConfirmEmailRequest;
 
         setLoading(true);

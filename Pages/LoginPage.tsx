@@ -29,8 +29,8 @@ const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
         e.persist();
 
         const request = {
-            Username: Username,
-            Password: Password
+            username: Username,
+            password: Password
         } as DTO.LoginRequest;
 
         setLoading(true);

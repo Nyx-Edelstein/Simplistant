@@ -31,7 +31,7 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         e.persist();
 
         const request = {
-            UserData: UserData,
+            userData: UserData,
         } as DTO.BeginRecoverAccountRequest;
 
         setSending(true);
@@ -65,9 +65,9 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         e.persist();
 
         const request = {
-            Username: Username,
-            Password: Password,
-            RecoveryToken: RecoveryToken,
+            username: Username,
+            password: Password,
+            recoveryToken: RecoveryToken,
         } as DTO.FinishRecoverAccountRequest;
 
         setLoading(true);

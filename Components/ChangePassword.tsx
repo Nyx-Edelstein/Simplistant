@@ -25,8 +25,8 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
 
     const ChangePassword = (_: React.MouseEvent<HTMLButtonElement>): void => {
         const request = {
-            OldPassword: OldPassword,
-            NewPassword: NewPassword
+            oldPassword: OldPassword,
+            newPassword: NewPassword
         } as DTO.ChangePasswordRequest;
 
         setLoading(true);

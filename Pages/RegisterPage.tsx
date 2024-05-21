@@ -39,10 +39,10 @@ const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
         e.persist();
 
         const request = {
-            Username: Username,
-            Password: Password,
-            Email: WaiveRecovery ? "" : Email,
-            WaiveEmailRecovery: WaiveRecovery
+            username: Username,
+            password: Password,
+            email: WaiveRecovery ? "" : Email,
+            waiveEmailRecovery: WaiveRecovery
         } as DTO.RegisterRequest;
 
         setLoading(true);

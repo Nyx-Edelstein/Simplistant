@@ -8,39 +8,39 @@ export enum ResponseStatus {
 }
 
 export interface AccountInfo {
-	Username: string;
-	IsOAuthAccount: boolean;
-	Email: string;
-	EmailConfirmed: boolean;
+	username: string;
+	isOAuthAccount: boolean;
+	email: string;
+	emailConfirmed: boolean;
 }
 
 export interface BeginRecoverAccountRequest {
-	UserData: string;
+	userData: string;
 }
 
 export interface ChangeEmailRequest {
-	NewEmail: string;
-	Password: string;
+	newEmail: string;
+	password: string;
 }
 
 export interface ChangePasswordRequest {
-	OldPassword: string;
-	NewPassword: string;
+	oldPassword: string;
+	newPassword: string;
 }
 
 export interface ConfirmEmailRequest {
-	ConfirmationToken: string;
+	confirmationToken: string;
 }
 
 export interface FinishRecoverAccountRequest {
-	Username: string;
-	Password: string;
-	RecoveryToken: string;
+	username: string;
+	password: string;
+	recoveryToken: string;
 }
 
 export interface LoginRequest {
-	Username: string;
-	Password: string;
+	username: string;
+	password: string;
 }
 
 export interface MessageResponse {
@@ -57,8 +57,8 @@ export interface OAuthTokenData {
 }
 
 export interface RegisterRequest {
-	Username: string;
-	Password: string;
-	Email: string;
-	WaiveEmailRecovery: boolean;
+	username: string;
+	password: string;
+	email: string;
+	waiveEmailRecovery: boolean;
 }

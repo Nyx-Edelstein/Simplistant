@@ -22,10 +22,8 @@ const AccountSettings: React.FC<Props> = (): JSX.Element => {
             } else if (typeof result == "number") {
                 //shouldn't ever happen
             } else {
-                IsOAuthAccount = result.IsOAuthAccount;
-                setIsOAuthAccount(result.IsOAuthAccount);
-                IsEmailConfirmed = result.EmailConfirmed;
-                setIsEmailConfirmed(result.EmailConfirmed);
+                setIsOAuthAccount(result.isOAuthAccount);
+                setIsEmailConfirmed(result.emailConfirmed);
                 console.log("call completed");
                 console.log(IsOAuthAccount);
                 console.log(IsEmailConfirmed);

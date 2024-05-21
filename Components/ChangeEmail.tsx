@@ -26,8 +26,8 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
 
     const ChangeEmail = (_: React.MouseEvent<HTMLButtonElement>): void => {
         const request = {
-            NewEmail: Email,
-            Password: Password
+            newEmail: Email,
+            password: Password
         } as DTO.ChangeEmailRequest;
 
         setLoading(true);
