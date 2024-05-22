@@ -28,7 +28,6 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
     }
 
     const onLogoutClicked = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-        e.persist();
         API.Logout().then(response => {
             if (typeof response === "number") {
                 //Shouldn't ever happen
@@ -39,7 +38,6 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
                 load(Page.Login);
             }
         });
-        e.preventDefault();
     };
 
     return (

@@ -48,14 +48,8 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         });
     }
 
-    const BeginRecoverOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-        BeginRecover();
-    };
-
-    const BeginRecoverOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>): void => {
+    const BeginRecoverOnEnter = (e: React.KeyboardEvent<HTMLFormElement>): void => {
         if (e.key !== "Enter") return;
-        e.persist();
         BeginRecover();
     };
 
@@ -95,14 +89,8 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         });
     };
 
-    const FinishRecoverOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-        FinishRecover();
-    };
-
     const FinishRecoverOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>): void => {
         if (e.key !== "Enter") return;
-        e.persist();
         FinishRecover();
     };
 
@@ -151,10 +139,10 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
                         <img src={Logo} alt="" width="150px" className="rounded" />
                     </figure>
                     <div>
-                        <input type="text" placeholder="Username or Email" className="input input-bordered input-secondary flex w-full" value={UserData} onChange={onUserDataChanged} />
+                        <input type="text" placeholder="Username or Email" className="input input-bordered input-secondary flex w-full" value={UserData} onChange={onUserDataChanged} onKeyDown={BeginRecoverOnEnter}/>
                     </div>
                     {messagesElement}
-                    <button className="btn btn-primary btn-wide" onClick={BeginRecoverOnClick} onKeyDown={BeginRecoverOnEnter}>
+                    <button className="btn btn-primary btn-wide" onClick={_ => BeginRecover()} onKeyDown={BeginRecoverOnEnter}>
                         Send Recovery Email</button>
                     <p>
                         <a onClick={Login} className="link link-accent">Already have an account?</a>
@@ -164,12 +152,12 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
                     <div className={RecoverySent ? "" : "hidden"}>
                         <div className="divider" />
                         <div style={{ textAlign: "center" }} >
-                            <input type="text" placeholder="Username" className="input input-bordered input-secondary flex w-full" value={Username} onChange={onUsernameChanged} />
-                            <input type="password" placeholder="New Password" className="input input-bordered input-secondary flex w-full" value={Password} onChange={onPasswordChanged} style={{ marginTop: "5px" }} />
-                            <input type="text" placeholder="Recovery Token" className="input input-bordered input-secondary flex w-full" value={RecoveryToken} onChange={onRecoveryTokenChanged} style={{ marginTop: "5px" }} />
+                            <input type="text" placeholder="Username" className="input input-bordered input-secondary flex w-full" value={Username} onChange={onUsernameChanged} onKeyDown={FinishRecoverOnEnter} />
+                            <input type="password" placeholder="New Password" className="input input-bordered input-secondary flex w-full" value={Password} onChange={onPasswordChanged} onKeyDown={FinishRecoverOnEnter} style={{ marginTop: "5px" }} />
+                            <input type="text" placeholder="Recovery Token" className="input input-bordered input-secondary flex w-full" value={RecoveryToken} onChange={onRecoveryTokenChanged} onKeyDown={FinishRecoverOnEnter} style={{ marginTop: "5px" }} />
                         </div>
                         {errorsElement}
-                        <button className="btn btn-primary btn-wide" onClick={FinishRecoverOnClick} onKeyDown={FinishRecoverOnEnter} style={{ marginTop: "10px" }}>Recover Account</button>
+                        <button className="btn btn-primary btn-wide" onClick={_ => FinishRecover()} style={{ marginTop: "10px" }}>Recover Account</button>
                     </div>
                 </div>
             </div>

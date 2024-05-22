@@ -35,9 +35,7 @@ const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
         setWaiveRecovery(!WaiveRecovery);
     };
 
-    const Register = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-
+    const Register = (): void => {
         const request = {
             username: Username,
             password: Password,
@@ -59,8 +57,12 @@ const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
                 setErrors(response.messages);
             }
         });
-        e.preventDefault();
     };
+
+    const RegisterOnEnter = (e: React.KeyboardEvent<HTMLFormElement>): void => {
+        if (e.key !== "Enter")
+        Register();
+    }
 
     const Login = (e: React.MouseEvent<HTMLAnchorElement>): void => {
         e.persist();
@@ -89,10 +91,10 @@ const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
                         <img src={Logo} alt="" width="150px" className="rounded" />
                     </figure>
                     <div>
-                        <input type="text" placeholder="Username" className="input input-bordered input-secondary flex" value={Username} onChange={onUsernameChanged} />
-                        <input type="password" placeholder="Password" className="input input-bordered input-secondary flex" value={Password} onChange={onPasswordChanged} style={{ marginTop: "5px" }} />
+                        <input type="text" placeholder="Username" className="input input-bordered input-secondary flex" value={Username} onChange={onUsernameChanged} onKeyDown={RegisterOnEnter} />
+                        <input type="password" placeholder="Password" className="input input-bordered input-secondary flex" value={Password} onChange={onPasswordChanged} style={{ marginTop: "5px" }} onKeyDown={RegisterOnEnter} />
                         {WaiveRecovery ? (<div></div>) : (
-                                <input type="text" placeholder="Recovery Email" className="input input-bordered input-secondary flex" value={Email} onChange={onEmailChanged} style={{ marginTop: "5px" }} />
+                            <input type="text" placeholder="Recovery Email" className="input input-bordered input-secondary flex" value={Email} onChange={onEmailChanged} style={{ marginTop: "5px" }} onKeyDown={RegisterOnEnter} />
                         )}
                         <label className="cursor-pointer label">
                             <span className="label-text">Waive Recovery Email?</span>
@@ -101,7 +103,7 @@ const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
                     </div>
                     {errorsElement}
                     <div className="card-actions">
-                        <button className="btn btn-primary btn-wide" onClick={Register}>Register</button>
+                        <button className="btn btn-primary btn-wide" onClick={_ => Register()}>Register</button>
                     </div>
                     <p>
                         <a onClick={Login} className="link link-accent">Already have an account?</a>

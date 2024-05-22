@@ -52,6 +52,11 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
         });
     };
 
+    const ChangeEmailOnEnter = (e: React.KeyboardEvent<HTMLFormElement>): void => {
+        if (e.key !== "Enter") return;
+        ChangeEmail();
+    }
+
     const messagesElement = Messages.length > 0 ? (
         <div className={`bg-base-200 rounded-box border border-${MessageType} flex w-full`}>
             <ul className={`text-${MessageType} text-center items-center`} style={{ margin: "15px" }}>
@@ -69,12 +74,10 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
             <div className="card-body">
                 <h2 className="card-title">Change Email Address</h2>
                 <div className="form-container-med">
-                    <input type="text" placeholder="New Email Address" className="input input-bordered input-accent flex w-full" value={Email} onChange={onEmailChanged} />
-                    <input type="password" placeholder="Password" className="input input-bordered input-accent flex w-full" value={Password} onChange={onPasswordChanged} />
+                    <input type="text" placeholder="New Email Address" className="input input-bordered input-accent flex w-full" value={Email} onChange={onEmailChanged} onKeyDown={ChangeEmailOnEnter} />
+                    <input type="password" placeholder="Password" className="input input-bordered input-accent flex w-full" value={Password} onChange={onPasswordChanged} onKeyDown={ChangeEmailOnEnter} />
                     {messagesElement}
-                    <button className="btn btn-accent flex w-full"
-                        onClick={_ => ChangeEmail()}
-                        onKeyPress={(e) => { if (e.key === "Enter") ChangeEmail(); }}>
+                    <button className="btn btn-accent flex w-full" onClick={_ => ChangeEmail()}>
                         Change Email</button>
                 </div>
             </div>

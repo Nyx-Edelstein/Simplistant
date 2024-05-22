@@ -23,7 +23,7 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
         setConfirmationToken(e.currentTarget.value);
     };
 
-    const ConfirmEmail = (_: React.MouseEvent<HTMLButtonElement>): void => {
+    const ConfirmEmail = (): void => {
         const request = {
             confirmationToken: ConfirmationToken,
         } as DTO.ConfirmEmailRequest;
@@ -45,9 +45,12 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
         });
     };
 
-    const Resend = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-        e.persist();
+    const ConfirmEmailOnEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
+        if (e.key !== "Enter") return;
+        ConfirmEmail();
+    }
 
+    const Resend = (e: React.MouseEvent<HTMLAnchorElement>): void => {
         setSending(true);
         API.ResendConfirmationEmail().then(response => {
             setSending(false);
@@ -94,9 +97,9 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
             <div className="card-body">
                 <h2 className="card-title">Email Confirmation</h2>
                 <div className="form-container-med">
-                    <input type="text" placeholder="Confirmation Token" className="input input-bordered input-accent flex w-full" value={ConfirmationToken} onChange={onConfirmationTokenChanged} />
+                    <input type="text" placeholder="Confirmation Token" className="input input-bordered input-accent flex w-full" value={ConfirmationToken} onChange={onConfirmationTokenChanged} onKeyDown={ConfirmEmailOnEnter} />
                     {messagesElement}
-                    <button className="btn btn-accent flex w-full" onClick={ConfirmEmail}>
+                    <button className="btn btn-accent flex w-full" onClick={_ => ConfirmEmail()}>
                             Confirm Email</button>
                     <div className="divider" />
                     <div className="text-center">

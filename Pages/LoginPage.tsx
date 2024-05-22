@@ -48,17 +48,9 @@ const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
         });
     };
 
-    const LoginOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.persist();
-        Login();
-        e.preventDefault();
-    }
-
     const LoginOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>) => {
         if (e.key !== "Enter") return;
-        e.persist();
         Login();
-        e.preventDefault();
     }
 
     const Register = (e: React.MouseEvent<HTMLAnchorElement>): void => {
@@ -98,12 +90,12 @@ const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
                         <img src={Logo} alt="" width="150px" className="rounded" />
                     </figure>
                     <div>
-                        <input type="text" placeholder="Username" className="input input-bordered input-secondary flex" value={Username} onChange={onUsernameChanged} />
-                        <input type="password" placeholder="Password" className="input input-bordered input-secondary flex" value={Password} onChange={onPasswordChanged} style={{ marginTop: "5px" }} />
+                        <input type="text" placeholder="Username" className="input input-bordered input-secondary flex" value={Username} onChange={onUsernameChanged} onKeyDown={LoginOnEnter} />
+                        <input type="password" placeholder="Password" className="input input-bordered input-secondary flex" value={Password} onChange={onPasswordChanged} style={{ marginTop: "5px" }} onKeyDown={LoginOnEnter} />
                     </div>
                     {errorsElement}
                     <div className="card-actions">
-                        <button className="btn btn-primary btn-wide" onClick={LoginOnClick} onKeyDown={LoginOnEnter}>Login</button>
+                        <button className="btn btn-primary btn-wide" onClick={_ => Login()}>Login</button>
                     </div>
                     <p>
                         <a onClick={Recover} className="link link-accent">Forgot Password?</a>
