@@ -50,7 +50,7 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
         });
     };
 
-    const ChangePasswordOnEnter = (e: React.KeyboardEvent<HTMLFormElement>): void => {
+    const ChangePasswordOnEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key !== "Enter") return;
         ChangePassword();
     }

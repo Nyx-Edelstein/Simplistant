@@ -59,7 +59,7 @@ const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
         });
     };
 
-    const RegisterOnEnter = (e: React.KeyboardEvent<HTMLFormElement>): void => {
+    const RegisterOnEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key !== "Enter")
         Register();
     }

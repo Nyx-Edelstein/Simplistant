@@ -45,7 +45,7 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
         });
     };
 
-    const ConfirmEmailOnEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    const ConfirmEmailOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key !== "Enter") return;
         ConfirmEmail();
     }
@@ -69,7 +69,6 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
                 setMessageType("error");
             }
         });
-
     }
 
     const messagesElement = Messages.length > 0 ? (

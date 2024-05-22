@@ -52,7 +52,7 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
         });
     };
 
-    const ChangeEmailOnEnter = (e: React.KeyboardEvent<HTMLFormElement>): void => {
+    const ChangeEmailOnEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key !== "Enter") return;
         ChangeEmail();
     }

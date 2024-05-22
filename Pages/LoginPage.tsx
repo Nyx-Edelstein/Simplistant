@@ -48,7 +48,7 @@ const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
         });
     };
 
-    const LoginOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    const LoginOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key !== "Enter") return;
         Login();
     }

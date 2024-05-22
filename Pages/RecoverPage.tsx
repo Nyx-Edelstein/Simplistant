@@ -48,7 +48,7 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         });
     }
 
-    const BeginRecoverOnEnter = (e: React.KeyboardEvent<HTMLFormElement>): void => {
+    const BeginRecoverOnEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key !== "Enter") return;
         BeginRecover();
     };
@@ -89,7 +89,7 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         });
     };
 
-    const FinishRecoverOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>): void => {
+    const FinishRecoverOnEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key !== "Enter") return;
         FinishRecover();
     };
