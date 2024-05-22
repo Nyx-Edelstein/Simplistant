@@ -142,7 +142,7 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
                         <input type="text" placeholder="Username or Email" className="input input-bordered input-secondary flex w-full" value={UserData} onChange={onUserDataChanged} onKeyDown={BeginRecoverOnEnter}/>
                     </div>
                     {messagesElement}
-                    <button className="btn btn-primary btn-wide" onClick={_ => BeginRecover()} onKeyDown={BeginRecoverOnEnter}>
+                    <button className="btn btn-primary btn-wide" onClick={_ => BeginRecover()}>
                         Send Recovery Email</button>
                     <p>
                         <a onClick={Login} className="link link-accent">Already have an account?</a>

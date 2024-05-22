@@ -27,7 +27,7 @@ const ContentPage: React.FC<Props> = ({ load }): JSX.Element => {
         setCurrentContent(Content.Settings);
     }
 
-    const onLogoutClicked = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+    const onLogoutClicked = (_: React.MouseEvent<HTMLAnchorElement>): void => {
         API.Logout().then(response => {
             if (typeof response === "number") {
                 //Shouldn't ever happen

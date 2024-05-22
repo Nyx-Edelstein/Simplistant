@@ -50,7 +50,7 @@ const EmailConfirmation: React.FC<Props> = ({setEmailConfirmed}): JSX.Element =>
         ConfirmEmail();
     }
 
-    const Resend = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+    const Resend = (_: React.MouseEvent<HTMLAnchorElement>): void => {
         setSending(true);
         API.ResendConfirmationEmail().then(response => {
             setSending(false);
