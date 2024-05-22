@@ -25,9 +25,7 @@ const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
         setPassword(e.currentTarget.value);
     };
 
-    const Login = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-
+    const Login = (): void => {
         const request = {
             username: Username,
             password: Password
@@ -48,8 +46,20 @@ const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
                 load(Page.Content);
             }
         });
-        e.preventDefault();
     };
+
+    const LoginOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.persist();
+        Login();
+        e.preventDefault();
+    }
+
+    const LoginOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (e.key !== "Enter") return;
+        e.persist();
+        Login();
+        e.preventDefault();
+    }
 
     const Register = (e: React.MouseEvent<HTMLAnchorElement>): void => {
         e.persist();
@@ -93,7 +103,7 @@ const LoginPanel: React.FC<Props> = ({ load }): JSX.Element => {
                     </div>
                     {errorsElement}
                     <div className="card-actions">
-                        <button className="btn btn-primary btn-wide" onClick={Login}>Login</button>
+                        <button className="btn btn-primary btn-wide" onClick={LoginOnClick} onKeyDown={LoginOnEnter}>Login</button>
                     </div>
                     <p>
                         <a onClick={Recover} className="link link-accent">Forgot Password?</a>

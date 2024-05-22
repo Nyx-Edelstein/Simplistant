@@ -58,7 +58,7 @@ const RegisterPage: React.FC<Props> = ({ load }): JSX.Element => {
             } else {
                 setErrors(response.messages);
             }
-    });
+        });
         e.preventDefault();
     };
 

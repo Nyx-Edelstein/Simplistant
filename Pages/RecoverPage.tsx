@@ -27,9 +27,7 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         setUserData(e.currentTarget.value);
     };
 
-    const BeginRecover = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-
+    const BeginRecover = (): void => {
         const request = {
             userData: UserData,
         } as DTO.BeginRecoverAccountRequest;
@@ -45,8 +43,20 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
             } else if (response.status === DTO.ResponseStatus.Success) {
                 setRecoverySent(true);
                 setMessages(response.messages);
+                setUserData("");
             }
         });
+    }
+
+    const BeginRecoverOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+        e.persist();
+        BeginRecover();
+    };
+
+    const BeginRecoverOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>): void => {
+        if (e.key !== "Enter") return;
+        e.persist();
+        BeginRecover();
     };
 
     const onUsernameChanged = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -61,9 +71,7 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
         setRecoveryToken(e.currentTarget.value);
     };
 
-    const FinishRecover = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.persist();
-
+    const FinishRecover = (): void => {
         const request = {
             username: Username,
             password: Password,
@@ -85,6 +93,17 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
                 }
             }
         });
+    };
+
+    const FinishRecoverOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+        e.persist();
+        FinishRecover();
+    };
+
+    const FinishRecoverOnEnter = (e: React.KeyboardEvent<HTMLButtonElement>): void => {
+        if (e.key !== "Enter") return;
+        e.persist();
+        FinishRecover();
     };
 
     const Login = (e: React.MouseEvent<HTMLAnchorElement>): void => {
@@ -135,7 +154,8 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
                         <input type="text" placeholder="Username or Email" className="input input-bordered input-secondary flex w-full" value={UserData} onChange={onUserDataChanged} />
                     </div>
                     {messagesElement}
-                    <button className="btn btn-primary btn-wide" onClick={BeginRecover}>Send Recovery Email</button>
+                    <button className="btn btn-primary btn-wide" onClick={BeginRecoverOnClick} onKeyDown={BeginRecoverOnEnter}>
+                        Send Recovery Email</button>
                     <p>
                         <a onClick={Login} className="link link-accent">Already have an account?</a>
                         <br />
@@ -149,7 +169,7 @@ const RecoverPanel: React.FC<Props> = ({ load }): JSX.Element => {
                             <input type="text" placeholder="Recovery Token" className="input input-bordered input-secondary flex w-full" value={RecoveryToken} onChange={onRecoveryTokenChanged} style={{ marginTop: "5px" }} />
                         </div>
                         {errorsElement}
-                        <button className="btn btn-primary btn-wide" onClick={FinishRecover} style={{ marginTop: "10px" }}>Recover Account</button>
+                        <button className="btn btn-primary btn-wide" onClick={FinishRecoverOnClick} onKeyDown={FinishRecoverOnEnter} style={{ marginTop: "10px" }}>Recover Account</button>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
         setPassword(e.currentTarget.value);
     };
 
-    const ChangeEmail = (_: React.MouseEvent<HTMLButtonElement>): void => {
+    const ChangeEmail = (): void => {
         const request = {
             newEmail: Email,
             password: Password
@@ -43,6 +43,8 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
                 setNewEmail(Email);
                 setMessages(response.messages);
                 setMessageType("success");
+                setEmail("");
+                setPassword("");
             } else {
                 setMessages(response.messages);
                 setMessageType("error");
@@ -70,7 +72,9 @@ const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
                     <input type="text" placeholder="New Email Address" className="input input-bordered input-accent flex w-full" value={Email} onChange={onEmailChanged} />
                     <input type="password" placeholder="Password" className="input input-bordered input-accent flex w-full" value={Password} onChange={onPasswordChanged} />
                     {messagesElement}
-                    <button className="btn btn-accent flex w-full" onClick={ChangeEmail}>
+                    <button className="btn btn-accent flex w-full"
+                        onClick={_ => ChangeEmail()}
+                        onKeyPress={(e) => { if (e.key === "Enter") ChangeEmail(); }}>
                         Change Email</button>
                 </div>
             </div>

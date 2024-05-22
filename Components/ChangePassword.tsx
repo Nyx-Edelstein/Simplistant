@@ -24,7 +24,7 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
         setNewPassword(e.currentTarget.value);
     };
 
-    const ChangePassword = (_: React.MouseEvent<HTMLButtonElement>): void => {
+    const ChangePassword = (): void => {
         const request = {
             oldPassword: OldPassword,
             newPassword: NewPassword
@@ -41,6 +41,8 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
             } else if (response.status === DTO.ResponseStatus.Success) {
                 setMessages(response.messages);
                 setMessageType("success");
+                setOldPassword("");
+                setNewPassword("");
             } else {
                 setMessages(response.messages);
                 setMessageType("error");
@@ -68,7 +70,9 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
                     <input type="password" placeholder="Old Password" className="input input-bordered input-accent flex w-full" value={OldPassword} onChange={onOldPasswordChanged} />
                     <input type="password" placeholder="New Password" className="input input-bordered input-accent flex w-full" value={NewPassword} onChange={onNewPasswordChanged} />
                     {messagesElement}
-                    <button className="btn btn-accent flex w-full" onClick={ChangePassword}>
+                    <button className="btn btn-accent flex w-full"
+                        onClick={_ => ChangePassword()}
+                        onKeyPress={(e) => { if (e.key === "Enter") ChangePassword(); }}>
                         Change Password</button>
                 </div>
             </div>
