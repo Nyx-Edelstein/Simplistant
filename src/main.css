@@ -9258,6 +9258,10 @@ html:has(.drawer-open.drawer-open) {
   width: 100%;
 }
 
+.max-w-xs {
+  max-width: 20rem;
+}
+
 .flex-shrink {
   flex-shrink: 1;
 }
@@ -10474,6 +10478,10 @@ html:has(.drawer-open.drawer-open) {
 
 .p-1 {
   padding: 0.25rem;
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .p-2 {

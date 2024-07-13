@@ -2,7 +2,7 @@
 import axios, { AxiosError } from "axios"
 import * as DTO from "./dto";
 
-const api_uri = "https://simplistant-api.azurewebsites.net";
+const api_uri = "https://localhost:7033";
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 const config: Object = {
@@ -223,6 +223,91 @@ export const ResendConfirmationEmail = async (): Promise<0 | string | DTO.Messag
     console.log("API - ResendConfirmationEmail, get");
     const endpoint = `${api_uri}/Account/ResendConfirmationEmail`;
     return await axiosInstance.get<DTO.MessageResponse>(endpoint)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((axiosError: AxiosError) => {
+            if (axiosError.response!.status === 401) {
+                return 0;
+            } else {
+                return axiosError.message;
+            }
+        }).catch(_ => { return "An unexpected error has occurred." });
+}
+
+export const DeleteNote = async (historyId: string): Promise<0 | string | DTO.MessageResponse> => {
+    console.log("API - DeleteNote, post");
+    const endpoint = `${api_uri}/Notes/DeleteNote`;
+    return await axiosInstance.post<DTO.MessageResponse>(endpoint, historyId)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((axiosError: AxiosError) => {
+            if (axiosError.response!.status === 401) {
+                return 0;
+            } else {
+                return axiosError.message;
+            }
+        }).catch(_ => { return "An unexpected error has occurred." });
+}
+
+export const GetNote = async (noteId: string): Promise<0 | string | DTO.NoteResponse> => {
+    console.log("API - GetNote, get");
+    const endpoint = `${api_uri}/Notes/GetNote?noteId=${noteId}`;
+    return await axiosInstance.get<DTO.NoteResponse>(endpoint)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((axiosError: AxiosError) => {
+            if (axiosError.response!.status === 401) {
+                return 0;
+            } else {
+                return axiosError.message;
+            }
+        }).catch(_ => { return "An unexpected error has occurred." });
+}
+
+export const GetNotesCatalog = async (): Promise<0 | string | DTO.SearchSummaryResponse> => {
+    console.log("API - GetNotesCatalog, get");
+    const endpoint = `${api_uri}/Notes/GetNotesCatalog`;
+    return await axiosInstance.get<DTO.SearchSummaryResponse>(endpoint)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((axiosError: AxiosError) => {
+            if (axiosError.response!.status === 401) {
+                return 0;
+            } else {
+                return axiosError.message;
+            }
+        }).catch(_ => { return "An unexpected error has occurred." });
+}
+
+export const SaveNote = async (note: DTO.Note): Promise<0 | string | DTO.MessageResponse> => {
+    console.log("API - SaveNote, post");
+    const endpoint = `${api_uri}/Notes/SaveNote`;
+    return await axiosInstance.post<DTO.MessageResponse>(endpoint, note)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((axiosError: AxiosError) => {
+            if (axiosError.response!.status === 401) {
+                return 0;
+            } else {
+                return axiosError.message;
+            }
+        }).catch(_ => { return "An unexpected error has occurred." });
+}
+
+export const SearchNotes = async (searchString: string, includeArchived: boolean): Promise<0 | string | DTO.SearchSummaryResponse> => {
+    console.log("API - SearchNotes, get");
+    const endpoint = `${api_uri}/Notes/SearchNotes?searchString=${searchString}&includeArchived=${includeArchived}`;
+    return await axiosInstance.get<DTO.SearchSummaryResponse>(endpoint)
         .then(response => {
             console.log(response.data);
             return response.data;

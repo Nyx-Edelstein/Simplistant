@@ -1,10 +1,10 @@
+import * as React from "react";
 import { useState, useEffect } from "react"
 import PulseLoader from "react-spinners/PulseLoader";
 
 import * as API from "API/api"
-
 import Logo from "Assets/logo.png"
-import "./Notes.css"
+import "./Placeholder.css"
 
 interface Props {
 
@@ -34,7 +34,7 @@ const Notes: React.FC<Props> = (): JSX.Element => {
                 <img src={Logo} alt=""></img>
                 <h1>Hello, {Username}.</h1>
                 <br />
-                <p>This site is still in progress. Come back later.</p>
+                <p>This site is still in progress. More to come later!</p>
             </div>
         </div>
     ));

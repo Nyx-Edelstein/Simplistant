@@ -1,10 +1,10 @@
+import * as React from "react";
 import { useState } from "react"
 import PulseLoader from "react-spinners/PulseLoader";
 import BeatLoader from "react-spinners/BeatLoader";
 
 import * as API from "API/api"
 import * as DTO from "API/dto"
-
 import "./EmailConfirmation.css"
 
 interface Props {

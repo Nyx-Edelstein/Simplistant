@@ -1,11 +1,11 @@
+import * as React from "react";
 import { useMemo, useState } from "react"
 import PulseLoader from "react-spinners/PulseLoader";
 
 import * as API from "API/api"
-import EmailConfirmation from "Components/EmailConfirmation"
-import ChangeEmail from "Components/ChangeEmail"
-import ChangePassword from "Components/ChangePassword"
-
+import EmailConfirmation from "Components/Settings/EmailConfirmation"
+import ChangeEmail from "Components/Settings/ChangeEmail"
+import ChangePassword from "Components/Settings/ChangePassword"
 import "./AccountSettings.css"
 
 interface Props {

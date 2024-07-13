@@ -49,15 +49,15 @@ function App() {
 
     return (
         <div className="center-screen">
-            {
-                CurrentPage === Page.Loading ? <PulseLoader color="#1eccff" />
-              : CurrentPage === Page.Login ? <LoginPage load={load}/>
-              : CurrentPage === Page.Content ? <ContentPage load={load}/>
-              : CurrentPage === Page.Error ? <ErrorPage load={load} message={Message}/>
-              : CurrentPage === Page.Recover ? <RecoverPage load={load}/>
-              : CurrentPage === Page.Register ? <RegisterPage load={load}/>
-              : <ErrorPage load={load} message="Something went wrong. :/"/>
-            }
+        {
+            CurrentPage === Page.Loading ? <PulseLoader color="#1eccff" />
+            : CurrentPage === Page.Login ? <LoginPage load={load}/>
+            : CurrentPage === Page.Content ? <ContentPage load={load}/>
+            : CurrentPage === Page.Error ? <ErrorPage load={load} message={Message}/>
+            : CurrentPage === Page.Recover ? <RecoverPage load={load}/>
+            : CurrentPage === Page.Register ? <RegisterPage load={load}/>
+            : <ErrorPage load={load} message="Something went wrong. :/"/>
+        }
         </div>
     );
 }

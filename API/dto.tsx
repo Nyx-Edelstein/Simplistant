@@ -32,6 +32,16 @@ export interface ConfirmEmailRequest {
 	confirmationToken: string;
 }
 
+export interface EditHistory {
+	noteId: string;
+	timestamp: string;
+	changes: string;
+}
+
+export interface EditHistoryResponse {
+	history: EditHistory[];
+}
+
 export interface FinishRecoverAccountRequest {
 	username: string;
 	password: string;
@@ -48,6 +58,20 @@ export interface MessageResponse {
 	messages: string[];
 }
 
+export interface Note {
+	noteId: string;
+	historyId: string;
+	title: string;
+	tags: string[];
+	markdown: string;
+	archived: boolean;
+}
+
+export interface NoteResponse {
+	status: ResponseStatus;
+	note: Note;
+}
+
 export interface OAuthTokenData {
 	access_token: string;
 	expires_in: number;
@@ -61,4 +85,16 @@ export interface RegisterRequest {
 	password: string;
 	email: string;
 	waiveEmailRecovery: boolean;
+}
+
+export interface SearchSummary {
+	noteId: string;
+	title: string;
+	tags: string[];
+	score: number;
+	archived: boolean;
+}
+
+export interface SearchSummaryResponse {
+	summaries: SearchSummary[];
 }

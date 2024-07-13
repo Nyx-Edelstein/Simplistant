@@ -1,0 +1,18 @@
+.tabs-nav {
+    display: grid;
+    height: auto;
+    width: auto;
+    grid-template-columns: auto 10px;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.tabs-container {
+    height: auto;
+    max-height: 150px;
+    width: auto;
+    overflow-x: clip;
+    overflow-y: auto;
+    position: relative
+}

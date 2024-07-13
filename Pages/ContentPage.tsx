@@ -4,9 +4,8 @@ import * as API from "API/api"
 import * as DTO from "API/dto"
 import Page from "Enum/Page"
 import Content from "Enum/Content"
-import Notes from "Components/Notes"
-import AccountSettings from "Components/AccountSettings"
-
+import Notes from "Components/Notes/Notes"
+import AccountSettings from "Components/Settings/AccountSettings"
 import AccountSettingsIcon from "Assets/account_settings.png";
 import NotesIcon from "Assets/notes.png";
 import LogoutIcon from "Assets/logout.png";

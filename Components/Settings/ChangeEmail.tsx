@@ -1,37 +1,38 @@
+import * as React from "react";
 import { useState } from "react"
 import PulseLoader from "react-spinners/PulseLoader";
 
 import * as API from "API/api"
 import * as DTO from "API/dto"
-
-import "./ChangePassword.css"
+import "./ChangeEmail.css"
 
 interface Props {
+    setNewEmail: (newEmail: string) => void;
 }
 
-const ChangePassword: React.FC<Props> = (): JSX.Element => {
-    const [OldPassword, setOldPassword] = useState<string>("");
-    const [NewPassword, setNewPassword] = useState<string>("");
+const ChangeEmail: React.FC<Props> = ({setNewEmail}): JSX.Element => {
+    const [Email, setEmail] = useState<string>("");
+    const [Password, setPassword] = useState<string>("");
     const [Messages, setMessages] = useState<string[]>([]);
     const [Loading, setLoading] = useState<boolean>(false);
     const [MessageType, setMessageType] = useState<string>("error");
 
-    const onOldPasswordChanged = (e: React.FormEvent<HTMLInputElement>): void => {
-        setOldPassword(e.currentTarget.value);
+    const onEmailChanged = (e: React.FormEvent<HTMLInputElement>): void => {
+        setEmail(e.currentTarget.value);
     };
 
-    const onNewPasswordChanged = (e: React.FormEvent<HTMLInputElement>): void => {
-        setNewPassword(e.currentTarget.value);
+    const onPasswordChanged = (e: React.FormEvent<HTMLInputElement>): void => {
+        setPassword(e.currentTarget.value);
     };
 
-    const ChangePassword = (): void => {
+    const ChangeEmail = (): void => {
         const request = {
-            oldPassword: OldPassword,
-            newPassword: NewPassword
-        } as DTO.ChangePasswordRequest;
+            newEmail: Email,
+            password: Password
+        } as DTO.ChangeEmailRequest;
 
         setLoading(true);
-        API.ChangePassword(request).then(response => {
+        API.ChangeEmail(request).then(response => {
             setLoading(false);
             if (typeof response === "number") {
                 //Shouldn't ever happen
@@ -39,10 +40,11 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
             else if (typeof response === "string") {
                 setMessages([response]);
             } else if (response.status === DTO.ResponseStatus.Success) {
+                setNewEmail(Email);
                 setMessages(response.messages);
                 setMessageType("success");
-                setOldPassword("");
-                setNewPassword("");
+                setEmail("");
+                setPassword("");
             } else {
                 setMessages(response.messages);
                 setMessageType("error");
@@ -50,9 +52,9 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
         });
     };
 
-    const ChangePasswordOnEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    const ChangeEmailOnEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key !== "Enter") return;
-        ChangePassword();
+        ChangeEmail();
     }
 
     const messagesElement = Messages.length > 0 ? (
@@ -70,18 +72,17 @@ const ChangePassword: React.FC<Props> = (): JSX.Element => {
     return (
         <div className="card w-96 bg-neutral text-neutral-content">
             <div className="card-body">
-                <h2 className="card-title">Change Password</h2>
+                <h2 className="card-title">Change Email Address</h2>
                 <div className="form-container-med">
-                    <input type="password" placeholder="Old Password" className="input input-bordered input-accent flex w-full" value={OldPassword} onChange={onOldPasswordChanged} onKeyPress={ChangePasswordOnEnter} />
-                    <input type="password" placeholder="New Password" className="input input-bordered input-accent flex w-full" value={NewPassword} onChange={onNewPasswordChanged} onKeyPress={ChangePasswordOnEnter} />
+                    <input type="text" placeholder="New Email Address" className="input input-bordered input-accent flex w-full" value={Email} onChange={onEmailChanged} onKeyDown={ChangeEmailOnEnter} />
+                    <input type="password" placeholder="Password" className="input input-bordered input-accent flex w-full" value={Password} onChange={onPasswordChanged} onKeyDown={ChangeEmailOnEnter} />
                     {messagesElement}
-                    <button className="btn btn-accent flex w-full"
-                        onClick={_ => ChangePassword()}>
-                        Change Password</button>
+                    <button className="btn btn-accent flex w-full" onClick={_ => ChangeEmail()}>
+                        Change Email</button>
                 </div>
             </div>
         </div>
     );
 }
 
-export default ChangePassword
+export default ChangeEmail
