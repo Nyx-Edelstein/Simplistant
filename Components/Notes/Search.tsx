@@ -7,10 +7,14 @@ import "./Search.css"
 
 interface Props {
     doSearch: (query: string, includeArchived: boolean) => void;
+    addTab: (id: string, title: string) => void;
+    openTab: (id: string, title: string) => void;
 }
 
-const Search: React.FC<Props> = ({ doSearch }): JSX.Element => {
+const Search: React.FC<Props> = ({ doSearch, addTab, openTab }): JSX.Element => {
     doSearch;
+    addTab;
+    openTab;
     //const [SearchQuery, setSearchQuery] = useState<string>("");
     //const [LastKeypress, setLastKeypress] = useState<Date>(new Date());
     //const [SearchQueued, setSearchQueued] = useState<boolean>(false);
