@@ -28,7 +28,27 @@ const Notes: React.FC<Props> = (): JSX.Element => {
     const [ActiveTab, setActiveTab] = useState<string>("");
     const [Loading, setLoading] = useState<boolean>(false);
 
+    const getCatalog = () => {
+        changeTab("");
+        setLoading(true);
+        API.GetNotesCatalog().then(result => {
+            if (typeof result == "string") {
+                //todo: Shouldn't happen...
+                console.log(`Unknown error, probably http related: ${result}`);
+            } else if (typeof result == "number") {
+                //todo: Shouldn't happen...
+                //unauthorized?? redirect to login??
+                console.log(`Unauthorized? (result = ${result})`);
+            } else {
+                setSearchSummaries(result.summaries);
+            }
+            setLoading(false);
+        })
+    }
+
     const search = (query: string, includeArchived: boolean) => {
+        changeTab("");
+        setLoading(true);
         API.SearchNotes(query, includeArchived).then(result => {
             if (typeof result == "string") {
                 //todo: Shouldn't happen...
@@ -39,8 +59,8 @@ const Notes: React.FC<Props> = (): JSX.Element => {
                 console.log(`Unauthorized? (result = ${result})`);
             } else {
                 setSearchSummaries(result.summaries);
-                changeTab("")
             }
+            setLoading(false);
         });
     }
 
@@ -149,9 +169,9 @@ const Notes: React.FC<Props> = (): JSX.Element => {
         /* todo: keybindings for navigation? */
         <div className="">
             <div onFocus={() => changeTab("")}>
-                <Search doSearch={search} addTab={addTab} openTab={openTab} />
+                <Search getCatalog={getCatalog} search={search} />
             </div>
-            {/* Buttons:
+            {/* Todo: Buttons:
                 * new note
                 * sort A-Z
                 * save all
@@ -168,7 +188,7 @@ const Notes: React.FC<Props> = (): JSX.Element => {
             <div>
                 {
                     Loading ? <PulseLoader color="#1eccff" />
-                        : ActiveTab === "" ? <SearchResults results={SearchSummaries} />
+                        : ActiveTab === "" ? <SearchResults results={SearchSummaries} addTab={addTab} openTab={openTab} />
                         : getActiveNote()
                 }
             </div>

@@ -1,0 +1,22 @@
+.search-bar {
+    display: grid;
+    height: auto;
+    width: auto;
+    margin: 5px;
+    grid-template-columns: 64px auto 64px;
+    grid-template-rows: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 0px;
+}
+
+.catalog-btn {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.search-input {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.archive-btn {
+    grid-area: 1 / 3 / 2 / 4;
+}

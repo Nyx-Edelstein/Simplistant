@@ -7,10 +7,14 @@ import "./Search.css"
 
 interface Props {
     results: DTO.SearchSummary[];
+    addTab: (id: string, title: string) => void;
+    openTab: (id: string, title: string) => void;
 }
 
-const SearchResults: React.FC<Props> = ({ results }): JSX.Element => {
+const SearchResults: React.FC<Props> = ({ results, addTab, openTab }): JSX.Element => {
     results;
+    addTab;
+    openTab;
 
     //scrollable search results
     //  * on click: open a tab for the item
