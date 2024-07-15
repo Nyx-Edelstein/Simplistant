@@ -7,8 +7,6 @@ import * as DTO from "API/dto"
 import Search from "Components/Notes/Search";
 import SearchResults from "Components/Notes/SearchResults";
 import NoteView from "Components/Notes/NoteView";
-import NoteEdit from "Components/Notes/NoteEdit";
-import NoteCreate from "Components/Notes/NoteCreate";
 import "./Notes.css"
 
 interface Props {
@@ -18,7 +16,6 @@ interface TabData {
     id: string,
     title: string,
     note: DTO.Note | undefined,
-    state: "view" | "edit" | "create",
     dirty: boolean
 }
 
@@ -29,6 +26,7 @@ const Notes: React.FC<Props> = (): JSX.Element => {
     const [Loading, setLoading] = useState<boolean>(false);
 
     const getCatalog = () => {
+        console.log("catalog");
         changeTab("");
         setLoading(true);
         API.GetNotesCatalog().then(result => {
@@ -47,6 +45,7 @@ const Notes: React.FC<Props> = (): JSX.Element => {
     }
 
     const search = (query: string, includeArchived: boolean) => {
+        console.log("search");
         changeTab("");
         setLoading(true);
         API.SearchNotes(query, includeArchived).then(result => {
@@ -69,10 +68,9 @@ const Notes: React.FC<Props> = (): JSX.Element => {
         if (existingTab === undefined) {
             const newTab: TabData = {
                 id: id,
-                title: (title.length < 15 ? title : title.slice(0, 12) + "..."),
+                title: (title.length < 20 ? title : title.slice(0, 17) + "..."),
                 note: undefined,
-                state: "view",
-                dirty: false
+                dirty: (Math.random() < 0.5)
             };
             var newTabs = [...OpenTabs, newTab];
             setOpenTabs(newTabs);
@@ -81,37 +79,52 @@ const Notes: React.FC<Props> = (): JSX.Element => {
     }
 
     const openTab = (id: string, title: string) => {
+        console.log("openTab")
         addTab(id, title);
         changeTab(id);
     }
 
     const changeTab = (tab: string) => {
-        var prevTab = document.getElementById(ActiveTab);
-        prevTab?.classList.remove("tab-active");
-        var newTab = document.getElementById(tab);
-        if (newTab !== null) {
-            newTab.classList?.add("tab-active");
-        }
+        var tabs = document.getElementsByClassName("notes-tab");
+        console.log("-")
+        console.log(`switching to ${tab}`)
+        Array.from(tabs).forEach(t => {
+            if (t.id === tab) {
+                console.log(`active tab: ${t.id}`)
+                t.classList.remove("bg-base-100");
+                t.classList.add("bg-accent")
+            } else {
+                console.log(`inactive tab: ${t.id}`)
+                t.classList.remove("bg-accent");
+                t.classList.add("bg-base-100");
+            }
+        });
         setActiveTab(tab);
     }
 
     const closeTab = (tab: string) => {
         const tab_i = OpenTabs.findIndex(t => t.id === tab);
-        if (tab_i > 0) {
+        if (tab_i >= 0) {
             const tab = OpenTabs[tab_i];
-            if (tab.dirty) { confirmCloseModal() }
-            else {
+            const close = () => {
+                if (ActiveTab === tab.id) {
+                    changeTab("");
+                }
                 const before = OpenTabs.slice(0, tab_i);
                 const after = OpenTabs.slice(tab_i + 1);
                 setOpenTabs([...before, ...after]);
-                if (ActiveTab === tab.id) {
-                    changeTab("");
-                }                
             }
+
+            if (tab.dirty) { confirmCloseModal("This note has pending edits that will be lost.", "Close Note", "Keep Open", close) }
+            else { close(); }
         }
     }
 
-    const confirmCloseModal = () => {
+    const confirmCloseModal = (message: string, confirm: string, cancel: string, callback: () => void) => {
+        message;
+        confirm;
+        cancel;
+        callback();
         //todo: implement modal
     }
 
@@ -148,20 +161,17 @@ const Notes: React.FC<Props> = (): JSX.Element => {
         }
 
         //Map note data to note component based on state
-        return data.state === "view" ? <NoteView note={data.note} />
-            : data.state === "edit" ? <NoteEdit note={data.note} />
-            : <NoteCreate note={data.note} />
+        //return <NoteView note={data.note} />
+        return <h1>{data.title}</h1>
     }
 
     //Map tab data to tab elements
-    var tabClass = (n: number) => n == 0 ? "tab tab-active" : "tab";
-    const tabs = OpenTabs.map((tab, i) =>
-        <a className={tabClass(i)} style={{ width: "100px" }} id={tab.id} onClick={() => changeTab(tab.id)}>
-            <span>{tab.title}</span>
-            {tab.dirty && <span>(*)</span>}
-            <button className="btn btn-circle" style={{ right: 0, position: "relative" }} onClick={() => closeTab(tab.id)}>
-                ✖
-            </button>
+    const tabs = OpenTabs.map(tab =>
+        <a className="notes-tab bg-base-100 text-neutral-content" id={tab.id} onClick={() => changeTab(tab.id)}>
+            <span className="tab-dirty-indicator"><b className={tab.dirty ? "invisible" : ""}>*</b></span>
+            <span className="tab-title">{tab.title}</span>
+            <button className="btn btn-circle btn-xs btn-ghost tab-close-btn"
+                onClick={e => { closeTab(tab.id); e.stopPropagation(); }}>✖</button>
         </a>
     );
 

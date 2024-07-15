@@ -2,11 +2,11 @@
     display: grid;
     height: auto;
     width: auto;
-    margin: 5px;
+    margin: 0px;
     grid-template-columns: 64px auto 64px;
     grid-template-rows: 1fr;
     grid-column-gap: 5px;
-    grid-row-gap: 0px;
+    grid-row-gap: 5px;
 }
 
 .catalog-btn {
