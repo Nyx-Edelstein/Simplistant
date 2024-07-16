@@ -8,10 +8,8 @@ interface Props {
 }
 
 const NoteView: React.FC<Props> = ({ note }): JSX.Element => {
-    note;
     return (
-        <div>
-        </div>
+        <h1>{note.title}</h1>
     );
 }
 

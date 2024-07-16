@@ -7,6 +7,13 @@ import * as DTO from "API/dto"
 import Search from "Components/Notes/Search";
 import SearchResults from "Components/Notes/SearchResults";
 import NoteView from "Components/Notes/NoteView";
+import NewNoteIcon from "Assets/new_note.png";
+import SaveAllIcon from "Assets/save_all.png";
+import SortIcon from "Assets/sort.png";
+import CloseBeforeIcon from "Assets/close_before.png";
+import CloseOtherIcon from "Assets/close_other.png";
+import CloseAfterIcon from "Assets/close_after.png";
+import CloseAllIcon from "Assets/close_all.png";
 import "./Notes.css"
 
 interface Props {
@@ -161,9 +168,16 @@ const Notes: React.FC<Props> = (): JSX.Element => {
         }
 
         //Map note data to note component based on state
-        //return <NoteView note={data.note} />
-        return <h1>{data.title}</h1>
+        return <NoteView note={data.note} />
     }
+
+    const newNote = () => { };
+    const saveAllNotes = () => { };
+    const sortTabs = () => { };
+    const closeTabsBefore = () => { };
+    const closeTabsAfter = () => { };
+    const closeOtherTabs = () => { };
+    const closeAllTabs = () => { };
 
     //Map tab data to tab elements
     const tabs = OpenTabs.map(tab =>
@@ -181,19 +195,56 @@ const Notes: React.FC<Props> = (): JSX.Element => {
             <div onFocus={() => changeTab("")}>
                 <Search getCatalog={getCatalog} search={search} />
             </div>
-            {/* Todo: Buttons:
+            <div className="tabs-nav">
+                <div className="tabs-container bg-base-200" >
+                    <div>{tabs}</div>
+                </div>
+            </div>
+            {/* Todo: Buttons functionality:
                 * new note
-                * sort A-Z
                 * save all
+                * sort A-Z
                 * close all before
                 * close all after
                 * close all but current
                 * close all
             */}
-            <div className="tabs-nav">
-                <div className="tabs tabs-boxed tabs-container" >
-                    <div>{tabs}</div>
-                </div>
+            <div className="utility-btns bg-base-200">
+                <button className="btn btn-ghost btn-sm" onClick={_ => newNote}>
+                    <div className="tooltip tooltip-top" data-tip="New note">
+                        <img src={NewNoteIcon} />
+                    </div>
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={_ => saveAllNotes}>
+                    <div className="tooltip tooltip-top" data-tip="Save all">
+                        <img src={SaveAllIcon} />
+                    </div>
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={_ => sortTabs}>
+                    <div className="tooltip tooltip-top" data-tip="Sort tabs">
+                        <img src={SortIcon} />
+                    </div>
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={_ => closeTabsBefore}>
+                    <div className="tooltip tooltip-top" data-tip="Close tabs to the left">
+                        <img src={CloseBeforeIcon} />
+                    </div>
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={_ => closeOtherTabs}>
+                    <div className="tooltip tooltip-top" data-tip="Close all other tabs">
+                        <img src={CloseOtherIcon} />
+                    </div>
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={_ => closeTabsAfter}>
+                    <div className="tooltip tooltip-top" data-tip="Close tabs to the right">
+                        <img src={CloseAfterIcon} />
+                    </div>
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={_ => closeAllTabs}>
+                    <div className="tooltip tooltip-top" data-tip="Close all tabs">
+                        <img src={CloseAllIcon} />
+                    </div>
+                </button>
             </div>
             <div>
                 {
